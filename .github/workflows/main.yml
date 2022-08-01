@@ -26,7 +26,6 @@ jobs:
         run: ng build
 
       - name: Deploy no Netlify
-        run: ls
         uses: jsmrcaga/action-netlify-deploy@v1.1.0
         with:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_TOKEN_SECRET }}
