@@ -19,6 +19,9 @@ jobs:
       - name: Instalando o @angular/cli
         run: npm install -g @angular/cli
 
+      - name: Instalando as dependências do projeto
+        run: npm install
+
       - name: Gerando o build do projeto
         run: ng build
 
