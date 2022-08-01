@@ -16,8 +16,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Gerar o build do projeto
+      - name: Instalando o @angular/cli
         run: npm install -g @angular/cli
+
+      - name: Gerando o build do projeto
         run: ng build
 
       - name: Deploy no Netlify
