@@ -17,7 +17,8 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Gerar o build do projeto
-        run: npm run build
+        run: npm install -g @angular/cli
+        run: ng build
 
       - name: Deploy no Netlify
         uses: jsmrcaga/action-netlify-deploy@v1.1.0
