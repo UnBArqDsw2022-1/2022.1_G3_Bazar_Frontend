@@ -16,8 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: 'Deploy no Netlify'
-        steps:
+      - name: Deploy no Netlify
         uses: jsmrcaga/action-netlify-deploy@v1.1.0
         with:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_TOKEN_SECRET }}
