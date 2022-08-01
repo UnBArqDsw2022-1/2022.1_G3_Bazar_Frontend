@@ -25,12 +25,11 @@ jobs:
       - name: Gerando o build do projeto
         run: ng build
 
-      - name: Diretorio
-        run: ls
-
       - name: Deploy no Netlify
+        run: ls
         uses: jsmrcaga/action-netlify-deploy@v1.1.0
         with:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_TOKEN_SECRET }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           NETLIFY_DEPLOY_TO_PROD: true
+          build_directory: dist
