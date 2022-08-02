@@ -5,6 +5,7 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
+[![Netlify Status][netlify-shield]][netlify-url]
 
 <!-- PROJECT LOGO -->
 <br />
@@ -214,4 +215,6 @@ Link do projeto: [https://github.com/UnBArqDsw2022-1/2022.1_G3_Bazar_Frontend](h
 [license-url]: https://github.com/UnBArqDsw2022-1/2022.1_G3_Bazar_Frontend/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/linkedin_username
+[netlify-shield]: https://api.netlify.com/api/v1/badges/a6ce9df8-976a-4fc3-a7b7-c777ef75273e/deploy-status
+[netlify-url]: https://app.netlify.com/sites/bazar-fga/deploys
 [product-screenshot]: https://arquivo.devmedia.com.br/noticias/documentacao/documentacao_angular-cli-como-rodar-testes-e-checar-o-codigo_38248.png
