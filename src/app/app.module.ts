@@ -7,8 +7,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FormModule } from './shared/form/form.module';
+import { SharedModule } from './shared/shared.module';
 
 import { ProdutoComponent } from './feature/painel/produto/produto.component';
 import { CompraComponent } from './feature/painel/compra/compra.component';
@@ -36,9 +37,10 @@ import { AuthService } from './services/auth.service';
     BrowserAnimationsModule,
     MatButtonModule,
     MatCardModule,
-    FormModule,
+    SharedModule,
     ReactiveFormsModule,
     FormsModule,
+    MatDialogModule,
   ],
   providers: [
     AuthService,
