@@ -9,14 +9,15 @@ import { CompraComponent } from './feature/painel/compra/compra.component';
 import { AutentificacaoComponent } from './feature/autentificacao/autentificacao.component';
 import { PainelComponent } from './feature/painel/painel.component';
 import { LayoutComponent } from './feature/painel/layout/layout.component';
+import { LoginComponent } from './pages/login/login.component';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 
-import { LoginComponent } from './pages/login/login.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -24,9 +25,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ProdutoComponent,
     CompraComponent,
     AutentificacaoComponent,
-    LoginComponent,
     PainelComponent,
-    LayoutComponent
+    LayoutComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,7 +41,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    AuthService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
