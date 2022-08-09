@@ -5,11 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormModule } from './shared/form/form.module';
 
 import { ProdutoComponent } from './feature/painel/produto/produto.component';
 import { CompraComponent } from './feature/painel/compra/compra.component';
@@ -35,12 +34,11 @@ import { AuthService } from './services/auth.service';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatFormFieldModule,
-    MatInputModule,
     MatButtonModule,
     MatCardModule,
-    FormsModule,
+    FormModule,
     ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [
     AuthService,
