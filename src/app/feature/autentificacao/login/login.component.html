@@ -1,44 +1,45 @@
-<div class="flex justify-center items-center w-full h-full bg-gray-300">
-  <mat-card class="w-2/5 flex flex-col text-md">
-    <h1 class="text-center">Login</h1>
+<div class="flex justify-center items-center h-full bg-gray-300">
+  <div class="w-full max-w-md m-4 sm:w-3/5 sm:m-0">
+    <mat-card class="flex-1">
+      <h1 class="text-center">Login</h1>
 
-    <form [formGroup]="formLogin">
+      <form [formGroup]="formLogin">
+        <app-input-texto
+          [group]="formLogin"
+          [formName]="'username'"
+          [titulo]="'Informe o seu E-mail'"
+          [dica]="'Digite o seu email'"
+          [placeholder]="'examplo@fga.com'"
+        ></app-input-texto>
 
-      <app-input-texto
-        [group]="formLogin"
-        [formName]="'username'"
-        [titulo]="'Informe o seu E-mail'"
-        [dica]="'Digite o seu email'"
-        [placeholder]="'examplo@fga.com'"
-      ></app-input-texto>
+        <app-input-texto
+          [group]="formLogin"
+          [formName]="'password'"
+          [titulo]="'Informe a sua senha'"
+          [dica]="'Digite a sua senha'"
+          [tipoCampo]="'password'"
+        ></app-input-texto>
 
-      <app-input-texto
-        [group]="formLogin"
-        [formName]="'password'"
-        [titulo]="'Informe a sua senha'"
-        [dica]="'Digite a sua senha'"
-        [tipoCampo]="'password'"
-      ></app-input-texto>
+        <br/>
 
-      <br/>
+        <p class="mt-8">
+          <button
+            (click)="login()"
+            class="w-full"
+            mat-raised-button
+            color="primary"
+            [disabled]="formLogin.invalid"
+          >
+            Entrar
+          </button>
+        </p>
 
-      <p class="mt-8">
-        <button
-          (click)="login()"
-          class="w-full"
-          mat-raised-button
-          color="primary"
-          [disabled]="formLogin.invalid"
-        >
-          Entrar
-        </button>
-      </p>
+        <br/>
 
-      <br/>
-
-      <p class="text-right text-blue-600">
-        <a class="mt-8" href="#">Esqueci minha senha</a>
-      </p>
-    </form>
-  </mat-card>
+        <p class="text-right text-blue-600">
+          <a class="mt-8" routerLink="/">Esqueci minha senha</a>
+        </p>
+      </form>
+    </mat-card>
+  </div>
 </div>
