@@ -1,1 +1,48 @@
-<p>login works!</p>
+<div class="flex justify-center items-center w-full h-full bg-gray-300">
+  <mat-card class="w-2/5 flex flex-col text-md">
+    <h1 class="text-center">Login</h1>
+
+    <form [formGroup]="formLogin">
+      <p>
+        <mat-form-field class="w-full" appearance="outline">
+          <mat-label>E-mail</mat-label>
+          <input matInput placeholder="Digite seu email" formControlName="username" autocomplete="off">
+          <mat-hint>Digite seu email</mat-hint>
+
+          <mat-error *ngIf="form.hasError('username', 'required', formLogin)">Campo obrigatório</mat-error>
+          <mat-error *ngIf="form.hasError('username', 'email', formLogin)">Digite um endereço de e-mail válido</mat-error>
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field class="w-full" appearance="outline">
+          <mat-label>Senha</mat-label>
+          <input matInput type="password" formControlName="password" autocomplete="off">
+          <mat-hint>Digite sua senha</mat-hint>
+
+          <mat-error *ngIf="form.hasError('password', 'required', formLogin)">Campo obrigatório</mat-error>
+        </mat-form-field>
+      </p>
+
+      <br/>
+
+      <p class="mt-8">
+        <button
+          (click)="login()"
+          class="w-full"
+          mat-raised-button
+          color="primary"
+          [disabled]="formLogin.invalid"
+        >
+          Entrar
+        </button>
+      </p>
+
+      <br/>
+
+      <p class="text-right text-blue-600">
+        <a class="mt-8" href="#">Esqueci minha senha</a>
+      </p>
+    </form>
+  </mat-card>
+</div>
