@@ -2,6 +2,7 @@ import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { stringify } from 'qs';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 interface Token {
   access_token: string;
@@ -38,7 +39,7 @@ export class AuthService {
 
     const payload = stringify(data);
 
-    return this._http.post<Token>('http://localhost:8080/oauth/token', payload, {
+    return this._http.post<Token>(environment.baseUrl, payload, {
       headers,
     });
   }
