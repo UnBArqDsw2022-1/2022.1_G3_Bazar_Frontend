@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-cadastro-cliente',
@@ -8,17 +8,29 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class CadastroClienteComponent implements OnInit {
 
-  firstFormGroup = this._formBuilder.group({
-    firstCtrl: ['', Validators.required],
-  });
+  cadastroClienteForm: FormGroup;
+  enderecoForm: FormGroup;
+  isEditable = true;
 
-  secondFormGroup = this._formBuilder.group({
-    secondCtrl: ['', Validators.required],
-  });
+  constructor(
+    private _fb: FormBuilder,
+  ) {
+    this.cadastroClienteForm = this._fb.group({
+      nome: ['', [Validators.required]],
+      cpf: [''],
+      email: ['', [Validators.required]],
+      senha: ['', [Validators.required]],
+    });
 
-  isEditable = false;
+    this.enderecoForm = this._fb.group({
+      cep: [null, [Validators.required]],
+      numero: [null, [Validators.required]],
+      bairro: ['', [Validators.required]],
+      complemento: [''],
+    }),
 
-  constructor(private _formBuilder: FormBuilder) {}
+    console.log(this.cadastroClienteForm)
+  }
 
   ngOnInit(): void {
   }
