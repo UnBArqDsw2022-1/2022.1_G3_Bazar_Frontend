@@ -1,4 +1,4 @@
-<div class="h-full md:max-w-3xl m-auto">
+<div class="h-full m-auto bg-gray-300">
   <div class="flex flex-col items-center justify-center h-full">
     <h1 class="text-center">
       Cadastro de Cliente
@@ -120,6 +120,7 @@
               mat-raised-button
               matStepperNext
               [disabled]="enderecoForm.invalid"
+              (click)="cadastrarUsuario()"
             >
               Finalizar cadastro
             </button>
@@ -131,7 +132,11 @@
           Cadastro concluído
         </ng-template>
 
-        <p>Você finalizou o seu cadastro com sucesso!</p>
+        <p class="text-center w-full h-8 rounded-md flex items-center justify-center">
+          <strong>
+            Cadastro finalizado!
+          </strong>
+        </p>
 
         <div>
           <button
