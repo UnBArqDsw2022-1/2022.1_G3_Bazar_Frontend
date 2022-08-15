@@ -1,0 +1,26 @@
+<mat-form-field
+  [formGroup]="group"
+  appearance="outline"
+>
+  <mat-label>
+    {{ titulo }}
+  </mat-label>
+
+  <mat-select [formControlName]="formName">
+    <mat-option
+      *ngFor="let opcao of opcoes"
+      [value]="opcao[valor]"
+    >
+      {{ opcao[valorExibido] }}
+    </mat-option>
+  </mat-select>
+
+  <mat-hint>{{ dica }}</mat-hint>
+
+  <mat-error
+      *ngIf="form.hasError(formName, 'required', group)"
+    >
+      Campo obrigatório
+    </mat-error>
+</mat-form-field>
+

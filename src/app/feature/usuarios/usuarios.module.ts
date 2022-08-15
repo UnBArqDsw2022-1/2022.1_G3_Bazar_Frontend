@@ -9,6 +9,8 @@ import { CadastroClienteComponent } from './cadastro-cliente/cadastro-cliente.co
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
+import { FormModule } from 'src/app/shared/form/form.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatStepperModule,
     MatButtonModule,
     MatIconModule,
+    FormModule,
+    RouterModule,
   ]
 })
 export class UsuariosModule { }
