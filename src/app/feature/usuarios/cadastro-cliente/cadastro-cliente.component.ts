@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Usuario } from 'src/app/models/usuario.model';
+import { DialogoService } from 'src/app/services/dialogo.service';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-cadastro-cliente',
@@ -14,6 +17,8 @@ export class CadastroClienteComponent implements OnInit {
 
   constructor(
     private _fb: FormBuilder,
+    private _usuarioService: UsuarioService,
+    private _dialogo: DialogoService
   ) {
     this.cadastroClienteForm = this._fb.group({
       nome: ['', [Validators.required]],
@@ -27,12 +32,33 @@ export class CadastroClienteComponent implements OnInit {
       numero: [null, [Validators.required]],
       bairro: ['', [Validators.required]],
       complemento: [''],
-    }),
-
-    console.log(this.cadastroClienteForm)
+    });
   }
 
   ngOnInit(): void {
+  }
+
+  public cadastrarUsuario(): void {
+    const usuario: Usuario = {
+      ...this.cadastroClienteForm.value,
+      enderecos: [
+        {
+          ...this.enderecoForm.value,
+        }
+      ],
+    };
+
+    this._usuarioService.cadastrarUsuario(usuario).subscribe({
+      next: (response) => {
+        this._dialogo.exibirDialogo('Sucesso!', 'Usuário cadastrado com sucesso!', 5, 'success').subscribe();
+        this.isEditable = false;
+      },
+
+      error: (error) => {
+        this._dialogo.exibirDialogo('Erro!', 'Não foi possível cadastrar o usuário!', 5, 'error').subscribe();
+        this.isEditable = true;
+      },
+    });
   }
 
 }
