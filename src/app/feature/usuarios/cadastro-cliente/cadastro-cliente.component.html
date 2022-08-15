@@ -1,0 +1,59 @@
+<div>
+  <h1>Cadastro de Cliente</h1>
+
+  <mat-stepper linear #stepper>
+    <mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>
+          Informações Pessoais
+        </ng-template>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Name</mat-label>
+          <input
+            matInput
+            formControlName="firstCtrl"
+            placeholder="Last name, First name"
+            required
+          />
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Próximo</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>
+          Informações de Endereço
+        </ng-template>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Address</mat-label>
+          <input
+            matInput
+            formControlName="secondCtrl"
+            placeholder="Ex. 1 Main St, New York, NY"
+            required
+          />
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperPrevious>Voltar</button>
+          <button mat-button matStepperNext>Próximo</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>
+        Cadastro concluído
+      </ng-template>
+
+      <p>Você finalizou o seu cadastro com sucesso!</p>
+
+      <div>
+        <button mat-button matStepperPrevious>Fazer login</button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</div>

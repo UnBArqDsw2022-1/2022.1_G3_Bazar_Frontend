@@ -19,6 +19,7 @@ import { LayoutComponent } from './feature/painel/layout/layout.component';
 import { LoginComponent } from './feature/autentificacao/login/login.component';
 
 import { AuthService } from './services/auth.service';
+import { UsuariosModule } from './feature/usuarios/usuarios.module';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { AuthService } from './services/auth.service';
     ReactiveFormsModule,
     FormsModule,
     MatDialogModule,
+    UsuariosModule,
   ],
   providers: [
     AuthService,
