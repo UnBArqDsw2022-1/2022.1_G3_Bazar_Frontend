@@ -83,9 +83,9 @@
 
             <app-input-texto
               [group]="enderecoForm"
-              [formName]="'numero'"
-              [titulo]="'Informe o número da sua casa'"
-              [dica]="'Digite o número da sua casa'"
+              [formName]="'bairro'"
+              [titulo]="'Informe o seu bairro'"
+              [dica]="'O nome do seu bairro/quadra/logradouro'"
               class="w-full"
             ></app-input-texto>
           </div>
@@ -95,12 +95,38 @@
           <div class="flex gap-8">
             <app-input-texto
               [group]="enderecoForm"
-              [formName]="'bairro'"
-              [titulo]="'Informe o seu bairro'"
-              [dica]="'O nome do seu bairro/quadra/logradouro'"
+              [formName]="'numero'"
+              [titulo]="'Informe o número da sua casa'"
+              [dica]="'Digite o número da sua casa'"
               class="w-full"
             ></app-input-texto>
 
+            <app-input-select
+              [group]="enderecoForm"
+              [formName]="'estadoSigla'"
+              [titulo]="'Informe o seu estado'"
+              [dica]="'Selecione o seu estado'"
+              [opcoes]="(estados$ | async) ?? []"
+              [valor]="'sigla'"
+              [valorExibido]="'nome'"
+              class="w-full"
+            ></app-input-select>
+
+            <app-input-select
+              [group]="enderecoForm"
+              [formName]="'cidadeId'"
+              [titulo]="'Informe a sua cidade'"
+              [dica]="'Selecione a sua cidade'"
+              [opcoes]="(cidades$ | async) ?? []"
+              [valor]="'id'"
+              [valorExibido]="'nome'"
+              class="w-full"
+            ></app-input-select>
+          </div>
+
+          <br/>
+
+          <div class="flex gap-8">
             <app-input-texto
               [group]="enderecoForm"
               [formName]="'complemento'"
