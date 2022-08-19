@@ -24,6 +24,7 @@ import { InputSelectComponent } from './input-select/input-select.component';
   ],
   exports: [
     InputTextoComponent,
+    InputSelectComponent,
   ],
 })
 export class FormModule { }
