@@ -4,20 +4,22 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from './shared/shared.module';
+
 import { ProdutoComponent } from './feature/painel/produto/produto.component';
 import { CompraComponent } from './feature/painel/compra/compra.component';
 import { AutentificacaoComponent } from './feature/autentificacao/autentificacao.component';
 import { PainelComponent } from './feature/painel/painel.component';
 import { LayoutComponent } from './feature/painel/layout/layout.component';
-import { LoginComponent } from './pages/login/login.component';
-
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
+import { LoginComponent } from './feature/autentificacao/login/login.component';
 
 import { AuthService } from './services/auth.service';
+import { UsuariosModule } from './feature/usuarios/usuarios.module';
 
 @NgModule({
   declarations: [
@@ -34,12 +36,13 @@ import { AuthService } from './services/auth.service';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatFormFieldModule,
-    MatInputModule,
     MatButtonModule,
     MatCardModule,
-    FormsModule,
+    SharedModule,
     ReactiveFormsModule,
+    FormsModule,
+    MatDialogModule,
+    UsuariosModule,
   ],
   providers: [
     AuthService,
