@@ -6,3 +6,11 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.bg-dialog-error .mat-dialog-container {
+  @apply bg-red-500 text-white;
+}
+
+.bg-dialog-success .mat-dialog-container {
+  @apply bg-green-600 text-white;
+}
