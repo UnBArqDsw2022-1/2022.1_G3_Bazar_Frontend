@@ -23,7 +23,7 @@ jobs:
         run: npm install
 
       - name: Gerando o build do projeto
-        run: ng build
+        run: ng build --prod
 
       - name: Deploy no Netlify
         uses: jsmrcaga/action-netlify-deploy@v1.1.0
