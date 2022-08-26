@@ -1,0 +1,176 @@
+<div class="h-full m-auto bg-gray-300">
+  <div class="flex flex-col items-center justify-center h-full">
+    <h1 class="text-center">
+      Cadastro de Cliente
+    </h1>
+
+    <mat-stepper linear #stepper class="">
+      <mat-step
+        [stepControl]="cadastroClienteForm"
+        [editable]="isEditable"
+      >
+        <form [formGroup]="cadastroClienteForm">
+          <ng-template matStepLabel>
+            Informações Pessoais
+          </ng-template>
+
+          <div class="flex gap-8">
+            <app-input-texto
+              [group]="cadastroClienteForm"
+              [formName]="'nome'"
+              [titulo]="'Informe seu nome'"
+              [dica]="'Digite o seu nome completo'"
+              class="w-full"
+            ></app-input-texto>
+
+            <app-input-texto
+              [group]="cadastroClienteForm"
+              [formName]="'cpf'"
+              [titulo]="'Informe seu CPF'"
+              [dica]="'Digite somente os 11 números do seu CPF'"
+              class="w-full"
+            ></app-input-texto>
+          </div>
+
+          <br/>
+
+          <div class="flex gap-8">
+            <app-input-texto
+              [group]="cadastroClienteForm"
+              [formName]="'email'"
+              [titulo]="'Informe seu E-mail'"
+              [dica]="'Este será o seu nome de usuário'"
+              class="w-full"
+            ></app-input-texto>
+
+            <app-input-texto
+              [group]="cadastroClienteForm"
+              [formName]="'senha'"
+              [titulo]="'Informe uma senha'"
+              [dica]="'Utilize letra e números para maior segurança'"
+              [tipoCampo]="'password'"
+              class="w-full"
+            ></app-input-texto>
+          </div>
+
+          <div class="flex justify-end">
+            <button
+              color="primary"
+              mat-raised-button
+              matStepperNext
+              [disabled]="cadastroClienteForm.invalid"
+            >
+              Próximo
+            </button>
+          </div>
+        </form>
+      </mat-step>
+
+      <mat-step [stepControl]="enderecoForm" [editable]="isEditable">
+        <form [formGroup]="enderecoForm">
+          <ng-template matStepLabel>
+            Informações de Endereço
+          </ng-template>
+
+          <div class="flex gap-8">
+            <app-input-texto
+              [group]="enderecoForm"
+              [formName]="'cep'"
+              [titulo]="'Informe o CEP'"
+              [dica]="'Digite o número do seu CEP'"
+              class="w-full"
+            ></app-input-texto>
+
+            <app-input-texto
+              [group]="enderecoForm"
+              [formName]="'bairro'"
+              [titulo]="'Informe o seu bairro'"
+              [dica]="'O nome do seu bairro/quadra/logradouro'"
+              class="w-full"
+            ></app-input-texto>
+          </div>
+
+          <br/>
+
+          <div class="flex gap-8">
+            <app-input-texto
+              [group]="enderecoForm"
+              [formName]="'numero'"
+              [titulo]="'Informe o número da sua casa'"
+              [dica]="'Digite o número da sua casa'"
+              class="w-full"
+            ></app-input-texto>
+
+            <app-input-select
+              [group]="enderecoForm"
+              [formName]="'estadoSigla'"
+              [titulo]="'Informe o seu estado'"
+              [dica]="'Selecione o seu estado'"
+              [opcoes]="(estados$ | async) ?? []"
+              [valor]="'sigla'"
+              [valorExibido]="'nome'"
+              class="w-full"
+            ></app-input-select>
+
+            <app-input-select
+              [group]="enderecoForm"
+              [formName]="'cidadeId'"
+              [titulo]="'Informe a sua cidade'"
+              [dica]="'Selecione a sua cidade'"
+              [opcoes]="(cidades$ | async) ?? []"
+              [valor]="'id'"
+              [valorExibido]="'nome'"
+              class="w-full"
+            ></app-input-select>
+          </div>
+
+          <br/>
+
+          <div class="flex gap-8">
+            <app-input-texto
+              [group]="enderecoForm"
+              [formName]="'complemento'"
+              [titulo]="'Informe um complemento'"
+              [dica]="'Adicione qualquer informação que acha importante'"
+              class="w-full"
+            ></app-input-texto>
+          </div>
+
+          <div class="flex justify-end gap-4 mt-4">
+            <button class="mr-4" mat-raised-button matStepperPrevious>
+              Voltar
+            </button>
+
+            <button
+              color="primary"
+              mat-raised-button
+              matStepperNext
+              [disabled]="enderecoForm.invalid"
+              (click)="cadastrarUsuario()"
+            >
+              Finalizar cadastro
+            </button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>
+          Cadastro concluído
+        </ng-template>
+
+        <p class="text-center w-full h-8 rounded-md flex items-center justify-center">
+          <strong>
+            Cadastro finalizado!
+          </strong>
+        </p>
+
+        <div>
+          <button
+            mat-button
+            [routerLink]="'/login'"
+          >Fazer login</button>
+        </div>
+      </mat-step>
+    </mat-stepper>
+  </div>
+</div>
