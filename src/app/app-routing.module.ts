@@ -1,3 +1,4 @@
+import { CrudProdutoComponent } from './feature/painel/crud-produto/crud-produto.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './feature/autentificacao/login/login.component';
@@ -6,7 +7,8 @@ import { CadastroClienteComponent } from './feature/usuarios/cadastro-cliente/ca
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'usuarios/cadastro-cliente', component: CadastroClienteComponent },
-  { path: '', redirectTo: 'login', pathMatch: 'full' }
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  {path: 'cadastro-produto', component: CrudProdutoComponent},
 ];
 
 @NgModule({
