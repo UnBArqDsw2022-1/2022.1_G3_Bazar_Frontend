@@ -7,7 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PainelComponent implements OnInit {
 
-  constructor() { }
+  visibilidadeDoCarrinho : boolean
+
+  constructor() { 
+    this.visibilidadeDoCarrinho = true
+  }
+
+  alteraVisibilidadeDoCarrinho(){
+    this.visibilidadeDoCarrinho  = ! this.visibilidadeDoCarrinho
+  }
 
   ngOnInit(): void {
   }
