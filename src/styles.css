@@ -14,3 +14,27 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .bg-dialog-success .mat-dialog-container {
   @apply bg-green-600 text-white;
 }
+
+.cor-de-fundo{
+  /* color: #F8F9FA; */
+  background-color: rgb(243 244 246);
+}
+
+.azul-tema{
+  color: #193264;
+}
+
+.font-padrao{
+  font-family: 'Quicksand';
+  font-size: large;
+  color: black;
+
+}
+
+/* .mat-step-header .mat-step-icon-selected{
+  background-color: #193264;
+}
+
+.mat-step-header .mat-step-icon-state-edit{
+  background-color: #193264;
+} */
