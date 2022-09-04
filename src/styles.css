@@ -15,9 +15,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   @apply bg-green-600 text-white;
 }
 
-/* .cor-de-fundo{
-  color: #F8F9FA;
-} */
+.cor-de-fundo{
+  /* color: #F8F9FA; */
+  background-color: rgb(243 244 246);
+}
 
 .azul-tema{
   color: #193264;
