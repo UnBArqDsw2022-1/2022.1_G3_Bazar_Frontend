@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ItemPedido } from 'src/app/models/ItemPedido.model';
+import { Produto } from 'src/app/models/Produto.model';
 
 @Component({
   selector: 'app-itemdocarrinho',
@@ -6,10 +8,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./itemdocarrinho.component.css']
 })
 export class ItemdocarrinhoComponent implements OnInit {
+  @Input()
+  itemPedido :ItemPedido | any
 
-  constructor() { }
+  constructor() {
+    this.itemPedido = {} as ItemPedido
+   }
 
   ngOnInit(): void {
   }
+
+  excluir(){
+
+  }
+
+  
+
 
 }
