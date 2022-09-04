@@ -10,8 +10,20 @@
     padding-top: 60px;
 
     padding: 8px 8px 8px 32px;
-    text-decoration: none;
     font-size: 25px;
     color: #000000;
-    display: block;
+}
+#titulo{
+    display: flex;
+    justify-content: space-around;
+    border-bottom: #000000;
+    border-style: solid;
+}
+
+#botao-valtar{
+    background-color: rgb(213, 249, 255);
+    position: fixed;
+    top: 4;
+    right: 20%;
+
 }

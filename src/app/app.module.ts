@@ -17,6 +17,8 @@ import { PainelComponent } from './feature/painel/painel.component';
 import { LoginComponent } from './feature/autentificacao/login/login.component';
 import { AuthService } from './services/auth.service';
 import { UsuariosModule } from './feature/usuarios/usuarios.module';
+import { CarrinhoComponent } from './feature/painel/carrinho/carrinho.component';
+import { ItemdocarrinhoComponent } from './feature/painel/carrinho/itemdocarrinho/itemdocarrinho.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { UsuariosModule } from './feature/usuarios/usuarios.module';
     AutentificacaoComponent,
     PainelComponent,
     LoginComponent,
+    ItemdocarrinhoComponent,
+    CarrinhoComponent
   ],
   imports: [
     BrowserModule,
