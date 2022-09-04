@@ -4,34 +4,51 @@
 
 <!--Main Navigation-->
 
+
+
   <!-- Sidebar -->
-  <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+  <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-gray-100">
+    <div>
+      <img src="assets/icons/logo.svg">
+    </div>
+
     <div class="position-sticky">
-      <div class="list-group list-group-flush mx-3 mt-4">
-        <a href="#" class="list-group-item list-group-item-action py-2 ripple" aria-current="true">
-          <i class="bi bi-grid me-3"></i><span>Ver Todos</span>
+      <div style="font-size: large" class="font-padrao list-group list-group-flush mx-3 mt-4">
+        <a [routerLink]="['/']" class="bg-gray-100 list-group-item list-group-item-action py-2 ripple" aria-current="true">
+          <i class="colorIcon bi bi-grid me-3"></i><span >Ver Todos</span>
         </a>
-        <a href="#" class="list-group-item list-group-item-action py-2 ripple active">
-          <i class="bi bi-bag-heart-fill me-3"></i><span>Roupas</span>
+
+        <a [routerLink]="['/']" class="bg-gray-100  mt-3 list-group-item list-group-item-action py-2 ripple">
+          <i class="colorIcon bi bi-bag-heart-fill me-3"></i><span>Roupas</span>
         </a>
-        <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
-            class="bi bi-sunglasses me-3"></i><span>Acessórios</span></a>
-        <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
-            class="bi bi-bag-heart-fill me-3"></i><span>Pets</span></a>
-        <a href="#" class="list-group-item list-group-item-action py-2 ripple">
-          <i class="bi bi-house-door-fill me-3"></i><span>Casa</span>
+
+        <a [routerLink]="['/']" class="bg-gray-100 mt-3 list-group-item list-group-item-action py-2 ripple"><i
+            class="colorIcon bi bi-sunglasses me-3"></i><span>Acessórios</span></a>
+
+        <a [routerLink]="['/']" class="bg-gray-100 mt-3 d-flex list-group-item list-group-item-action py-2 ripple">
+          <i> <img src="assets/icons/dog-bone-pngrepo-com.png" width="15px"></i>
+          <span class="px-3">Pets</span></a>
+
+        <a [routerLink]="['/']" class="bg-gray-100  mt-3 list-group-item list-group-item-action py-2 ripple">
+          <i class="colorIcon bi bi-house-door-fill me-3"></i><span>Casa</span>
         </a>
+
+        <div *ngIf="!routerLogin()">
+          <a [routerLink]="['/login']" class="bg-gray-100 margin-button list-group-item list-group-item-action py-2 ripple">
+            <button type="button" class="btn btn-primary btn-lg btn-lg btn-block">Entrar</button>
+          </a>
+        </div>
       </div>
     </div>
   </nav>
 
 
-<nav id="main-navbar" class=" navbar navbar-expand-lg navbar-light bg-light fixed-top">
+<nav id="main-navbar" class=" bg-gray-100 border border-gray rounded-left navbar navbar-expand-lg fixed-top">
 
   <div class="margin">
     <div class="input-group">
       <input
-        class="form-control rounded"
+        class="bg-gray-50 form-control rounded"
         placeholder="Search"
         aria-label="Search"
       />
@@ -43,30 +60,30 @@
   </div>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Masculino <span class="sr-only">(current)</span></a>
+      <li class="mx-3 nav-item">
+        <a class="font-padrao nav-link" href="#">Masculino</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Feminino</a>
+      <li class="mx-3 nav-item">
+        <a class="font-padrao nav-link" href="#">Feminino</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Kids</a>
+      <li class="mx-3 nav-item">
+        <a class="font-padrao nav-link" href="#">Kids</a>
       </li>
     </ul>
-  <div class="IconsNav navbar navbar-default">
+  <div class="iconsNav navbar navbar-default">
       <ul class="nav navbar-nav navbar-right">
         <li>
-          <a href="#" class="">
+          <a href="#" class="azul-tema">
             <i style="font-size: 20px" class="bi bi-cart3 me-3"></i>
           </a>
         </li>
         <li>
-          <a href="#" class="">
-            <i style="font-size: 20px" class="bi bi-person-circle me-3"></i><span>Usuário</span>
+          <a href="#" class="font-padrao">
+            <i style="font-size: 20px" class="azul-tema bi bi-person-circle me-3"></i><span>Usuário</span>
           </a>
         </li>
         <li>
-          <a href="#" class="spaceIcon">
+          <a href="#" class="azul-tema px-3">
             <i style="font-size: 20px" class="bi bi-gear me-3"></i>
           </a>
         </li>
