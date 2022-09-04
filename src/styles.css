@@ -14,3 +14,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .bg-dialog-success .mat-dialog-container {
   @apply bg-green-600 text-white;
 }
+
+.cor-de-fundo{
+  color: #F8F9FA;
+}
+
+.azul-tema{
+  color: #193264;
+}
