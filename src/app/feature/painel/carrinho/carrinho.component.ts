@@ -1,4 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { ItemPedido } from 'src/app/models/ItemPedido.model';
+
 
 @Component({
   selector: 'app-carrinho',
@@ -7,13 +9,15 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class CarrinhoComponent {
   @Input()
-  visible : boolean
+  visibilidade: boolean;
 
   @Output() 
   notify = new EventEmitter();
 
+  itens ?: ItemPedido[]
+
   constructor() {
-    this.visible = false;
-   }
+    this.visibilidade = true
+  }
 
 }
