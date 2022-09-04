@@ -20,6 +20,7 @@ import { DialogoComponent } from './dialogo/dialogo.component';
   exports: [
     DialogoComponent,
     FormModule,
+    CommonModule,
   ],
 })
 export class SharedModule { }

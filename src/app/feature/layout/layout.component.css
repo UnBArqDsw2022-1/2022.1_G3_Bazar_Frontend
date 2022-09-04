@@ -22,11 +22,24 @@
   width: 100%;
 }
 
-.IconsNav{
+.iconsNav{
   margin-left: auto;
   margin-right: 10%;
 }
 
 .spaceIcon{
   padding-left: 30%;
+}
+
+.colorIcon{
+  color: #193264;
+}
+
+.btn{
+  background-color: #193264;
+
+}
+
+.margin-button{
+  margin-top: 50%;
 }
