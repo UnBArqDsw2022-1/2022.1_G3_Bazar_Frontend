@@ -3,7 +3,9 @@
 
 
 <!--Main Navigation-->
+  <app-carrinho></app-carrinho>
 
+  <app-carrinho [visibilidade]="visibilidadeDoCarrinho" (notify)="alteraVisibilidadeDoCarrinho()"></app-carrinho>
 
 
   <!-- Sidebar -->
@@ -14,7 +16,7 @@
 
     <div class="position-sticky">
       <div style="font-size: large" class="font-padrao list-group list-group-flush mx-3 mt-4">
-        <a [routerLink]="['/']" class="bg-gray-100 list-group-item list-group-item-action py-2 ripple" aria-current="true">
+        <a [routerLink]="['/login']" class="bg-gray-100 list-group-item list-group-item-action py-2 ripple" aria-current="true">
           <i class="colorIcon bi bi-grid me-3"></i><span >Ver Todos</span>
         </a>
 
@@ -32,6 +34,8 @@
         <a [routerLink]="['/']" class="bg-gray-100  mt-3 list-group-item list-group-item-action py-2 ripple">
           <i class="colorIcon bi bi-house-door-fill me-3"></i><span>Casa</span>
         </a>
+
+       
 
         <div *ngIf="!routerLogin()">
           <a [routerLink]="['/login']" class="bg-gray-100 margin-button list-group-item list-group-item-action py-2 ripple">
