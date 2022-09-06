@@ -1,7 +1,9 @@
-<div id="carrinho" *ngIf="visibilidade">
-    <button id="botao-valtar" (click)="notify.emit()">></button>
+<div id="fundo-carrinho" *ngIf="visibilidade" (click)="notify.emit()"></div>
 
-    <h1 id="titulo">Carrinho</h1>
+<div id="carrinho" class="cor-de-fundo font-padrao" *ngIf="visibilidade" >
+    <button id="botao-fechar" class="cor-de-fundo" (click)="notify.emit()">></button>
+
+    <h1 id="titulo" class="cor-de-fundo font-padrao">Carrinho</h1>
     <div *ngFor="let item in itens">
         <app-itemdocarrinho [itemPedido]="item"></app-itemdocarrinho>
     </div>
