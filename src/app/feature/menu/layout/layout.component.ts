@@ -17,7 +17,7 @@ export class LayoutComponent implements OnInit {
     private readonly authService: AuthService,
     private readonly router: Router
     ) {
-      this.visibilidadeDoCarrinho = true;
+      this.visibilidadeDoCarrinho = false;
     }
 
   ngOnInit(): void {

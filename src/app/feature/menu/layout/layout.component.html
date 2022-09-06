@@ -3,7 +3,6 @@
 
 
 <!--Main Navigation-->
-  <app-carrinho></app-carrinho>
 
   <app-carrinho [visibilidade]="visibilidadeDoCarrinho" (notify)="alteraVisibilidadeDoCarrinho()"></app-carrinho>
 
@@ -76,8 +75,8 @@
     </ul>
   <div class="iconsNav navbar navbar-default">
       <ul class="nav navbar-nav navbar-right">
-        <li>
-          <a href="#" class="azul-tema">
+        <li (click) = "alteraVisibilidadeDoCarrinho()">
+          <a class="azul-tema">
             <i style="font-size: 20px" class="bi bi-cart3 me-3"></i>
           </a>
         </li>
