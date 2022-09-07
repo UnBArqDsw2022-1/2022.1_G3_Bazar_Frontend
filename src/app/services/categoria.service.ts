@@ -11,7 +11,7 @@ export class CategoriaService {
 
   constructor(private http: HttpClient) { }
 
-  public listarCateorias(): Observable<Categoria[]> {
-    return this.http.get<Categoria[]>(`${environment.baseUrl}/cidades/categorias`);
+  public listarCategorias(): Observable<Categoria[]> {
+    return this.http.get<Categoria[]>(`${environment.baseUrl}/categorias`);
   }
 }
