@@ -16,11 +16,17 @@ export class ProdutoService {
   showMessage(msg: string): void {
     this.snackBar.open(msg, 'X', {
       duration: 3000,
-      horizontalPosition: 'center', 
+      horizontalPosition: 'center',
     })
   }
 
   create(produto: Produto): Observable<Produto>{
-    return this.http.post<Produto>(`${environment.baseUrl}/produtos`, produto);
+    console.log(produto)
+    return this.http.post<Produto>(`${environment.baseUrl}/produtos`, produto, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjI1OTcyOTcsInVzZXJfbmFtZSI6ImRvdWdsYXNAZ21haWwuY29tIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9BRE1JTiJdLCJqdGkiOiJmZGI2ODFlNS0xM2UzLTRiM2QtOTI5Yy03M2ZmMmQyZTQ3MTciLCJjbGllbnRfaWQiOiJiYXphci1mZ2EiLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXX0.rjLRhtFVNB1HRheG46uewCK-_Fc0ZnGmEEON2DPi1Po',
+      },
+    });
   }
 }
