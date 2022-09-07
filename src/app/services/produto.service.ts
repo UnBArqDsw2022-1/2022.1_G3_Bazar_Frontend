@@ -21,7 +21,6 @@ export class ProdutoService {
   }
 
   create(produto: Produto): Observable<Produto>{
-    console.log(produto)
     return this.http.post<Produto>(`${environment.baseUrl}/produtos`, produto, {
       headers: {
         'Content-Type': 'application/json',
