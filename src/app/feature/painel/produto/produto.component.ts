@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProdutoComponent implements OnInit {
 
-  constructor() { }
+  produtos:any[] = [];
+
+  constructor(
+
+  ) { }
 
   ngOnInit(): void {
   }
+
+
 
 }
