@@ -1,8 +1,8 @@
 import { Categoria } from "./categoria.model";
 
 export interface Produto {
-    id?: number
-    nome: string
-    preco: number
-
+    id?: number;
+    nome: string;
+    preco: number;
+    categorias?: Array<{id: number}>;
 }

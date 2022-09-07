@@ -9,22 +9,25 @@ import { ProdutoService } from 'src/app/services/produto.service';
   styleUrls: ['./crud-produto.component.css']
 })
 export class CrudProdutoComponent implements OnInit {
-  
+
   produto: Produto = {
     nome: 'Produto Teste',
-    preco: 125.5
+    preco: 125.5,
+    categorias: [{
+      id: 1,
+    }],
   }
   constructor(private produtoService: ProdutoService) { }
 
   ngOnInit(): void {
-    
+
   }
 
   createProduct(): void {
     this.produtoService.create(this.produto).subscribe(() => {
       this.produtoService.showMessage('Operaçao executada com sucesso!')
     })
-    
+
   }
   cancel(): void {
     this.produtoService.showMessage('Operaçao cancelada.')
