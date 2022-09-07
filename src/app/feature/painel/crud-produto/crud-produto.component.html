@@ -1,0 +1,69 @@
+<mat-card class="flex-1">
+  <mat-card-title class="text-center">
+    Cadastro de Produto
+  </mat-card-title>
+
+  <br/>
+
+  <form>
+    <mat-form-field>
+        <input matInput placeholder="Nome" [(ngModel)]="produto.nome" name="nome">
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="Preço (R$)" [(ngModel)]="produto.preco" name="preco">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Categorias</mat-label>
+      <mat-select multiple (valueChange)="obterCategoriasSelecionadas($event)">
+        <mat-option
+          *ngFor="let cat of (categorias$ | async)"
+          [value]="{id: cat.id}"
+        >
+          {{cat.nome}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <input
+      type="file"
+      accept=".png, .jpg, .jpeg"
+      (change)="onUploadDeImagemDeProduto($event)"
+      ng2FileSelect
+      multiple
+    />
+
+    <!-- Preview das imagens dos produtos-->
+    <div class="flex gap-4 flex-wrap mt-4">
+      <div
+        class="flex justify-end items-end"
+        *ngFor="let img of produto.imagens; index as i"
+      >
+        <img
+          src={{img.imagemUrl}}
+          class="w-32 h-32 rounded-md"
+        >
+        <button
+          [matTooltip]="'Remover imagem do produto'"
+          [matTooltipPosition]="'right'"
+          (click)="removerImagem(i)"
+          class="absolute bg-white rounded-md"
+          style="margin: 0 !important"
+        >
+          <mat-icon color="warn">delete</mat-icon>
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <div>
+    <button mat-raised-button (click)="cadastrarProduto()" color="primary">
+      Salvar
+    </button>
+
+    <button mat-raised-button (click)="cancel()" >
+      Cancelar
+    </button>
+  </div>
+</mat-card>
