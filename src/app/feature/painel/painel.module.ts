@@ -1,12 +1,17 @@
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 
-
 @NgModule({
-  declarations: [],
+  declarations: [
+
+  ],
   imports: [
-    CommonModule
+    CommonModule,
+    MatButtonModule,
+    MatIconModule,
   ]
 })
 export class PainelModule { }
