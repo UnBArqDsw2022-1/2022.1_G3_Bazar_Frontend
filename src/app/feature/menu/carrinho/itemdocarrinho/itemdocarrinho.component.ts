@@ -22,7 +22,6 @@ export class ItemdocarrinhoComponent implements OnInit {
 
   public incrementar(): void {
     this.itemPedido = this.pedidoService.incrementar(this.itemPedido.produto.id);
-    console.log(this.itemPedido)
   }
 
   public decrementar(): void {

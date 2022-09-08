@@ -57,7 +57,7 @@ export class PedidoService {
     return carrinho[index];
   }
 
-  public decrementar(idProduto: number): ItemPedido {
+  public decrementar(idProduto: number): ItemPedido | null {
     const carrinho = this._storage.getCarrinho();
     const index = carrinho.findIndex(item => item.produto.id === idProduto);
 
@@ -67,6 +67,11 @@ export class PedidoService {
         ...item,
         quantidade: item.quantidade - 1,
       };
+    }
+
+    if (carrinho[index].quantidade <= 0) {
+      carrinho.splice(index, 1);
+      return null;
     }
 
     this._storage.setCarrinho(carrinho);

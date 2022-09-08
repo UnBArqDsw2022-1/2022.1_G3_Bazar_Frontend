@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="itemPedido && itemPedido.produto">
  <h3>{{itemPedido.produto.nome}}</h3>
  <p>{{itemPedido.produto.preco}}</p>
  <div>

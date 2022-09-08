@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { EMPTY, Observable } from 'rxjs';
 import { Paginacao } from 'src/app/models/paginacao.model';
 import { Produto } from 'src/app/models/Produto.model';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { PedidoService } from 'src/app/services/pedido.service';
 import { ProdutoService } from 'src/app/services/produto.service';
 
 @Component({
