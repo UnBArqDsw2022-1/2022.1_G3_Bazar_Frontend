@@ -1,5 +1,4 @@
-import { LayoutModule } from './feature/layout/layout.module';
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -17,6 +16,9 @@ import { PainelComponent } from './feature/painel/painel.component';
 import { LoginComponent } from './feature/autentificacao/login/login.component';
 import { AuthService } from './services/auth.service';
 import { UsuariosModule } from './feature/usuarios/usuarios.module';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core'
+import { MenuModule } from './feature/menu/menu.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,7 @@ import { UsuariosModule } from './feature/usuarios/usuarios.module';
     LoginComponent,
   ],
   imports: [
+    RouterModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -39,10 +42,14 @@ import { UsuariosModule } from './feature/usuarios/usuarios.module';
     FormsModule,
     MatDialogModule,
     UsuariosModule,
-    LayoutModule,
+    MenuModule
   ],
   providers: [
     AuthService,
+  ],
+  schemas : [
+    CUSTOM_ELEMENTS_SCHEMA,
+    NO_ERRORS_SCHEMA
   ],
   bootstrap: [AppComponent]
 })
