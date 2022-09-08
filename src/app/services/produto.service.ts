@@ -21,8 +21,8 @@ export class ProdutoService {
     })
   }
 
-  public listarProdutos(): Observable<Paginacao<Produto>> {
-    return this.http.get<Paginacao<Produto>>(`${environment.baseUrl}/produtos`);
+  public listarProdutos(idCategoria: number = 0): Observable<Paginacao<Produto>> {
+    return this.http.get<Paginacao<Produto>>(`${environment.baseUrl}/produtos?idCategoria=${idCategoria}`);
   }
 
   create(produto: Produto): Observable<Produto>{

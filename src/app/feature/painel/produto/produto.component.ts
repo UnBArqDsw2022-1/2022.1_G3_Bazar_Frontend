@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { EMPTY, Observable } from 'rxjs';
 import { Paginacao } from 'src/app/models/paginacao.model';
 import { Produto } from 'src/app/models/Produto.model';
@@ -17,10 +18,16 @@ export class ProdutoComponent implements OnInit {
 
   constructor(
     private _produtoService: ProdutoService,
+    private _route: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
     this.produtos$ = this._produtoService.listarProdutos();
+
+    this._route.paramMap.subscribe(map => {
+      const idCategoria = map.get('idCategoria') ?? 0;
+      this.produtos$ = this._produtoService.listarProdutos(+idCategoria);
+    });
   }
 
 }

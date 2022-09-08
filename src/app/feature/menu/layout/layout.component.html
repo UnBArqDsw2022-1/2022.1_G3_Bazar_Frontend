@@ -79,32 +79,13 @@
           </a>
 
           <a
-            [routerLink]="['/']"
-            class="bg-gray-100 mt-3 list-group-item list-group-item-action py-2 ripple"
+            *ngFor="let cat of (categorias$ | async)"
+            [routerLink]="['/produtos', {idCategoria: cat.id}]"
+            class="bg-gray-100 mt-3 list-group-item list-group-item-action
+              py-2 ripple flex items-center gap-2 cursor-pointer"
           >
-            <i class="colorIcon bi bi-bag-heart-fill me-3"></i><span>Roupas</span>
-          </a>
-
-          <a
-            [routerLink]="['/']"
-            class="bg-gray-100 mt-3 list-group-item list-group-item-action py-2 ripple"
-            ><i class="colorIcon bi bi-sunglasses me-3"></i
-            ><span>Acessórios</span></a
-          >
-
-          <a
-            [routerLink]="['/']"
-            class="bg-gray-100 mt-3 d-flex list-group-item list-group-item-action py-2 ripple"
-          >
-            <i> <img src="assets/icons/dog-bone-pngrepo-com.png" width="15px" /></i>
-            <span class="px-3">Pets</span></a
-          >
-
-          <a
-            [routerLink]="['/']"
-            class="bg-gray-100 mt-3 list-group-item list-group-item-action py-2 ripple"
-          >
-            <i class="colorIcon bi bi-house-door-fill me-3"></i><span>Casa</span>
+            <mat-icon class="colorIcon">{{cat?.icone}}</mat-icon>
+            <span>{{cat.nome}}</span>
           </a>
 
           <div *ngIf="!routerLogin()">
