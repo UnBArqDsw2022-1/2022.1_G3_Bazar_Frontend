@@ -1,7 +1,5 @@
-import { PedidoService } from './../../../../services/pedido.service';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ItemPedido } from 'src/app/models/ItemPedido.model';
-import { Produto } from 'src/app/models/Produto.model';
 
 @Component({
   selector: 'app-itemdocarrinho',
@@ -10,28 +8,26 @@ import { Produto } from 'src/app/models/Produto.model';
 })
 export class ItemdocarrinhoComponent implements OnInit {
   @Input()
-  itemPedido: ItemPedido | any
+  itemPedido: ItemPedido
 
-  constructor(
-    private pedidoService: PedidoService,
-  ) {
+  @Output()
+  eventoIncremento;
+
+  @Output()
+  eventoDecremento;
+
+
+  constructor() {
     this.itemPedido = {} as ItemPedido
+    this.eventoIncremento = new EventEmitter()
+    this.eventoDecremento = new EventEmitter()
    }
 
   ngOnInit(): void {
   }
 
-  public incrementar(): void {
-    this.itemPedido = this.pedidoService.incrementar(this.itemPedido.produto.id);
-    console.log(this.itemPedido)
-  }
-
-  public decrementar(): void {
-    this.itemPedido = this.pedidoService.decrementar(this.itemPedido.produto.id);
-  }
-
-  excluir(){
-
+  public precototal() : number{
+    return this.itemPedido.quantidade * this.itemPedido.produto.preco
   }
 
 }
