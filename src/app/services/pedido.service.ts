@@ -39,9 +39,15 @@ export class PedidoService {
     this._storage.setCarrinho(carrinho);
     return carrinho;
   }
+  public excluir(idProduto: number): ItemPedido[] {
+    const NovoCarrinho = this._storage.getCarrinho().filter( item => idProduto !== item.produto.id)
+    this._storage.setCarrinho(NovoCarrinho)
+    return NovoCarrinho
+  }
 
-  public incrementar(idProduto: number): ItemPedido {
+  public incrementar(idProduto: number): ItemPedido[] {
     const carrinho = this._storage.getCarrinho();
+    console.log(carrinho)
     const index = carrinho.findIndex(item => item.produto.id === idProduto);
 
     if (index !== -1) {
@@ -54,15 +60,21 @@ export class PedidoService {
 
     this._storage.setCarrinho(carrinho);
 
-    return carrinho[index];
+    return carrinho;
   }
 
-  public decrementar(idProduto: number): ItemPedido | null {
+  public decrementar(idProduto: number): ItemPedido[] {
     const carrinho = this._storage.getCarrinho();
     const index = carrinho.findIndex(item => item.produto.id === idProduto);
 
     if (index !== -1) {
       const item = carrinho[index];
+
+      if ( item.quantidade === 1 ){
+        return this.excluir(idProduto)
+      }
+
+
       carrinho[index] = {
         ...item,
         quantidade: item.quantidade - 1,
@@ -71,12 +83,13 @@ export class PedidoService {
 
     if (carrinho[index].quantidade <= 0) {
       carrinho.splice(index, 1);
-      return null;
+      return [];
     }
 
     this._storage.setCarrinho(carrinho);
 
-    return carrinho[index];
+    return carrinho;
   }
+
 
 }

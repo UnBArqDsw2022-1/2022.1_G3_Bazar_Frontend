@@ -13,15 +13,28 @@ export class CarrinhoComponent implements OnInit {
   visibilidade: boolean;
 
   @Output()
-  notify = new EventEmitter();
+  notify;
 
   itens: ItemPedido[] = [];
 
   constructor(
     private _storage: LocalStorageService,
+    private _pedidoService : PedidoService
+
   ) {
     this.visibilidade = true;
+    this.notify = new EventEmitter()
   }
+
+  public incrementar(produtoId:number): void {
+    this.itens = this._pedidoService.incrementar(produtoId);
+  }
+
+  public decrementar(produtoId:number): void {
+    this.itens = this._pedidoService.decrementar(produtoId);
+  }
+
+
 
   ngOnInit(): void {
     this.itens = this._storage.getCarrinho();
