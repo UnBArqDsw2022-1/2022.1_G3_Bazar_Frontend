@@ -1,1 +1,150 @@
-<p>compra works!</p>
+<div class="container">
+  <mat-stepper linear #stepper>
+    <mat-step
+      [stepControl]="enderecoFormGroup"
+      [editable]="isEditable"
+    >
+      <form [formGroup]="enderecoFormGroup" class="w-full mt-4">
+        <ng-template matStepLabel>
+          Confirme o seu <br/> endereço
+        </ng-template>
+
+        <mat-radio-group
+          class="flex gap-4 flex-wrap items-center justify-evenly"
+          formControlName="id"
+        >
+          <mat-radio-button class="" color="primary" value="1">
+            <mat-card class="">
+                <div>
+                    <mat-card-title>Endereço 1</mat-card-title>
+                    <mat-card-subtitle>123123</mat-card-subtitle>
+                </div>
+                <mat-card-content>
+                    Rua das almas
+                </mat-card-content>
+            </mat-card>
+          </mat-radio-button>
+        </mat-radio-group>
+
+        <div class="text-center">
+          <button color="primary" mat-raised-button matStepperNext class="mt-4">
+            Próximo
+            <mat-icon>arrow_forward</mat-icon>
+          </button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step
+      [stepControl]="pagamentoFormGroup"
+      [editable]="isEditable"
+    >
+      <form [formGroup]="pagamentoFormGroup" class="w-full mt-4">
+        <ng-template matStepLabel>
+          Confirme a forma <br/> de pagamento
+        </ng-template>
+
+        <mat-radio-group
+          class="flex gap-4 flex-wrap items-center justify-evenly"
+          formControlName="@type"
+        >
+          <mat-radio-button class="" color="primary" value="pagamentoDinheiro">
+            <mat-card class="">
+                <div>
+                  <mat-card-title>Pagamento com dinheiro</mat-card-title>
+                </div>
+                <mat-card-content>
+                    Troco para: <input formControlName="troco" type="number" min="0">
+                </mat-card-content>
+            </mat-card>
+          </mat-radio-button>
+
+          <mat-radio-button class="" color="primary" value="pagamentoPix">
+            <mat-card class="">
+                <div>
+                  <mat-card-title>Pagamento com Pix</mat-card-title>
+                </div>
+                <mat-card-content>
+                    Chave do pix para comprovação: <input matInput formControlName="chavePix" type="text">
+                </mat-card-content>
+            </mat-card>
+          </mat-radio-button>
+        </mat-radio-group>
+
+        <div class="text-center">
+          <button color="primary" mat-raised-button matStepperNext class="mt-4">
+            Próximo
+            <mat-icon>arrow_forward</mat-icon>
+          </button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step
+      [stepControl]="confirmacaoFormGroup"
+      [editable]="isEditable"
+    >
+      <form [formGroup]="confirmacaoFormGroup" class="mt-4">
+        <ng-template matStepLabel>
+          Confirme os dados <br/> do pedido
+        </ng-template>
+
+        <mat-card class="">
+          <div>
+              <mat-card-title>Endereço 1</mat-card-title>
+              <mat-card-subtitle>123123</mat-card-subtitle>
+          </div>
+          <mat-card-content>
+              Rua das almas
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="">
+          <div>
+            <mat-card-title>Pagamento</mat-card-title>
+          </div>
+          <mat-card-content>
+              Rua das almas
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="">
+          <div>
+            <mat-card-title>Produtos</mat-card-title>
+          </div>
+          <mat-card-content>
+            <div>
+              Nome: Teste<br/>
+              Preço: 10.00<br>
+              Quantidade: 4<br/>
+              Total do produto: 10 * 4 = 40,00<br/>
+            </div>
+
+            <div>
+              Total da compra: 1200
+            </div>
+          </mat-card-content>
+        </mat-card>
+
+        <div>
+          <button mat-button matStepperPrevious>Voltar</button>
+          <button color="primary" mat-raised-button matStepperNext>Finalizar compra</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>
+        Pedido concluído!
+      </ng-template>
+
+      <p>Seu pedido está sendo processado.</p>
+
+      <div>
+        <button mat-button (click)="stepper.reset()" routerLink="/">
+          Voltar para a tela inicial
+        </button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</div>

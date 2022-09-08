@@ -17,6 +17,7 @@ import { MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule} from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatRadioModule } from '@angular/material/radio';
 
 import { CompraComponent } from './feature/painel/compra/compra.component';
 import { AutentificacaoComponent } from './feature/autentificacao/autentificacao.component';
@@ -27,6 +28,7 @@ import { PainelModule } from './feature/painel/painel.module';
 import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core'
 import { MenuModule } from './feature/menu/menu.module';
 import { RouterModule } from '@angular/router';
+import { MatStepperModule } from '@angular/material/stepper';
 
 @NgModule({
   declarations: [
@@ -58,6 +60,8 @@ import { RouterModule } from '@angular/router';
     MatSelectModule,
     PainelModule,
     MenuModule,
+    MatStepperModule,
+    MatRadioModule,
   ],
   providers: [
     AuthService,

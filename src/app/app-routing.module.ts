@@ -1,3 +1,4 @@
+import { CompraComponent } from './feature/painel/compra/compra.component';
 import { ProdutoComponent } from './feature/painel/produto/produto.component';
 import { CrudProdutoComponent } from './feature/painel/crud-produto/crud-produto.component';
 import { NgModule } from '@angular/core';
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'usuarios/cadastro-cliente', component: CadastroClienteComponent },
   { path: 'cadastro-produto', component: CrudProdutoComponent },
   { path: 'home', component:  PainelComponent},
+  { path: 'finalizar-pedido', component:  CompraComponent},
   { path: '', redirectTo: 'produtos', pathMatch: 'full' },
 ];
 
