@@ -13,7 +13,7 @@ export class LocalStorageService {
     return (carrinho != null) ? JSON.parse(carrinho) : [];
   }
 
-  public setCarrinho(carrinho: ItemPedido[]): void {
+  public setCarrinho(carrinho: ItemPedido[] | null): void {
     if (carrinho !== null) {
       localStorage.setItem('carrinho', JSON.stringify(carrinho));
     } else {

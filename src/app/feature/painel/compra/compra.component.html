@@ -13,14 +13,21 @@
           class="flex gap-4 flex-wrap items-center justify-evenly"
           formControlName="id"
         >
-          <mat-radio-button class="" color="primary" value="1">
+          <mat-radio-button
+            *ngFor="let end of (enderecos$ | async)"
+            class=""
+            color="primary"
+            [value]="end.id"
+            (change)="enderecoSelecionado = end"
+          >
             <mat-card class="">
                 <div>
-                    <mat-card-title>Endereço 1</mat-card-title>
-                    <mat-card-subtitle>123123</mat-card-subtitle>
+                    <mat-card-title>{{end.bairro}}</mat-card-title>
+                    <mat-card-subtitle>{{end.cep}} - {{end.cidade.estado.sigla}}</mat-card-subtitle>
                 </div>
                 <mat-card-content>
-                    Rua das almas
+                    {{end.complemento ?? 'Sem complemento'}}. nº {{end.numero}} <br/>
+                    {{end.cidade.nome}}/{{end.cidade.estado.nome}}
                 </mat-card-content>
             </mat-card>
           </mat-radio-button>
@@ -51,10 +58,15 @@
           <mat-radio-button class="" color="primary" value="pagamentoDinheiro">
             <mat-card class="">
                 <div>
-                  <mat-card-title>Pagamento com dinheiro</mat-card-title>
+                  <mat-card-title>
+                    Pagamento com dinheiro
+                  </mat-card-title>
                 </div>
                 <mat-card-content>
-                    Troco para: <input formControlName="troco" type="number" min="0">
+                    <mat-form-field class="w-full mt-2" appearance="outline">
+                      <mat-label>Troco para:</mat-label>
+                      <input matInput formControlName="troco" placeholder="Valor do troco, se necessário" value="0" min="0" type="number" [required]="pagamentoFormGroup.get('@type')?.value === 'pagamentoDinheiro'">
+                    </mat-form-field>
                 </mat-card-content>
             </mat-card>
           </mat-radio-button>
@@ -65,14 +77,26 @@
                   <mat-card-title>Pagamento com Pix</mat-card-title>
                 </div>
                 <mat-card-content>
-                    Chave do pix para comprovação: <input matInput formControlName="chavePix" type="text">
+                    <mat-card-content>
+                      Envie o valor para o pix: <br/><i>Arq&DesDeSoft@unb.fga.br</i><br/>
+                      <mat-form-field class="w-full mt-2" appearance="outline">
+                        <mat-label>Sua chave do pix para comprovação</mat-label>
+                        <input matInput formControlName="chavePix" placeholder="Sua chave do pix" type="text" [required]="pagamentoFormGroup.get('@type')?.value === 'pagamentoPix'">
+                      </mat-form-field>
+                  </mat-card-content>
                 </mat-card-content>
             </mat-card>
           </mat-radio-button>
         </mat-radio-group>
 
         <div class="text-center">
-          <button color="primary" mat-raised-button matStepperNext class="mt-4">
+          <button
+            color="primary"
+            mat-raised-button
+            matStepperNext
+            class="mt-4"
+            (click)="pagamentoSelecionado = pagamentoFormGroup.value"
+          >
             Próximo
             <mat-icon>arrow_forward</mat-icon>
           </button>
@@ -89,46 +113,62 @@
           Confirme os dados <br/> do pedido
         </ng-template>
 
-        <mat-card class="">
-          <div>
-              <mat-card-title>Endereço 1</mat-card-title>
-              <mat-card-subtitle>123123</mat-card-subtitle>
-          </div>
-          <mat-card-content>
-              Rua das almas
-          </mat-card-content>
-        </mat-card>
+        <div class="flex gap-4 mb-4">
+          <mat-card class="w-full">
+            <div>
+                <mat-card-title>{{enderecoSelecionado.bairro}}</mat-card-title>
+                <mat-card-subtitle>{{enderecoSelecionado.cep}} - {{enderecoSelecionado.cidade?.estado?.sigla}}</mat-card-subtitle>
+            </div>
+            <mat-card-content>
+                {{enderecoSelecionado.complemento ?? 'Sem complemento'}}. nº {{enderecoSelecionado.numero}} <br/>
+                {{enderecoSelecionado.cidade?.nome}}/{{enderecoSelecionado.cidade?.estado?.nome}}
+            </mat-card-content>
+          </mat-card>
+
+          <mat-card class="w-full">
+            <div>
+              <mat-card-title>Pagamento</mat-card-title>
+            </div>
+            <mat-card-content>
+              <p *ngIf="pagamentoSelecionado['@type'] === 'pagamentoDinheiro' else pagamentoPix">
+                Pagamento de dinheiro <br/>
+                Troco para: {{pagamentoSelecionado.troco | currency: 'BRL'}}
+              </p>
+
+              <ng-template #pagamentoPix>
+                Pagamento por Pix <br/>
+                Chave: {{pagamentoSelecionado.chavePix}}
+              </ng-template>
+            </mat-card-content>
+          </mat-card>
+        </div>
 
         <mat-card class="">
-          <div>
-            <mat-card-title>Pagamento</mat-card-title>
-          </div>
-          <mat-card-content>
-              Rua das almas
-          </mat-card-content>
-        </mat-card>
-
-        <mat-card class="">
-          <div>
+          <div class="mb-4">
             <mat-card-title>Produtos</mat-card-title>
           </div>
           <mat-card-content>
-            <div>
-              Nome: Teste<br/>
-              Preço: 10.00<br>
-              Quantidade: 4<br/>
-              Total do produto: 10 * 4 = 40,00<br/>
+            <div class="flex flex-row flex-wrap gap-4 items-center justify-between">
+              <div
+                *ngFor="let pedido of pedidos"
+                class="border-2 border-gray-600 rounded-md shadow-neutral-400 p-2"
+              >
+                Nome: {{pedido.produto.nome}}<br/>
+                Preço: {{pedido.produto.preco | currency: 'BRL'}}<br/>
+                Quantidade: {{pedido.quantidade}} <br/>
+                Total do produto: {{(pedido.produto.preco * pedido.quantidade) | currency: 'BRL'}} <br/>
+              </div>
             </div>
 
-            <div>
-              Total da compra: 1200
+            <div class="text-right mt-4">
+              <strong>Total da compra: {{totalPedido() | currency: 'BRL'}}</strong>
             </div>
           </mat-card-content>
         </mat-card>
 
-        <div>
-          <button mat-button matStepperPrevious>Voltar</button>
-          <button color="primary" mat-raised-button matStepperNext>Finalizar compra</button>
+        <div class="mt-4 text-right">
+          <button mat-button matStepperPrevious>Voltar</button>&nbsp;&nbsp;
+          <button (click)="finalizarPedido()" color="primary" mat-raised-button matStepperNext>Finalizar compra</button>
         </div>
       </form>
     </mat-step>
@@ -138,9 +178,11 @@
         Pedido concluído!
       </ng-template>
 
-      <p>Seu pedido está sendo processado.</p>
+      <p class="text-center mt-4">
+        Seu pedido está sendo processado, aguarde.
+      </p>
 
-      <div>
+      <div class="text-center mt-4">
         <button mat-button (click)="stepper.reset()" routerLink="/">
           Voltar para a tela inicial
         </button>
