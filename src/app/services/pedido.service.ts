@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Produto } from '../models/Produto.model';
+import { AuthService } from './auth.service';
 
 
 @Injectable({
@@ -94,7 +95,7 @@ export class PedidoService {
   public finalizarPedido(pedido: PedidoFinal): Observable<void> {
     return this._http.post<void>(`${environment.baseUrl}/pedidos`, pedido, {
       headers: {
-        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NjI3NDQ3NzcsInVzZXJfbmFtZSI6ImRvdWdsYXNAZ21haWwuY29tIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9BRE1JTiJdLCJqdGkiOiI5NWQzYmIxOS03YzQxLTRkZmYtYjk1OS1mNzljYTk2Mjg4ZjUiLCJjbGllbnRfaWQiOiJiYXphci1mZ2EiLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXX0.YMlEJ8XmbXXtuBAQT9yoUhWWb7e_TcMcW7smgjMUOPc',
+        'Authorization': 'Bearer ' + AuthService.getToken(),
       }
     });
   }
