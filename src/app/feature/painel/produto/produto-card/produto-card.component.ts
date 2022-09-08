@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Produto } from 'src/app/models/Produto.model';
+import { PedidoService } from 'src/app/services/pedido.service';
 
 @Component({
   selector: 'app-produto-card',
@@ -13,7 +14,9 @@ export class ProdutoCardComponent implements OnInit {
   imagemSelecionada: string = '';
   contadorImagem = 0;
 
-  constructor() { }
+  constructor(
+    private _pedidoService: PedidoService,
+  ) { }
 
   ngOnInit(): void {
     this.imagemSelecionada = this.produto.imagens[this.contadorImagem]?.imagemUrl || 'assets/imagens/prod-default.jpg';
@@ -27,6 +30,10 @@ export class ProdutoCardComponent implements OnInit {
   public imagemAnterior(): void {
     this.contadorImagem = this.contadorImagem -1;
     this.imagemSelecionada = this.produto.imagens[this.contadorImagem]?.imagemUrl;
+  }
+
+  public adicionarAoCarrinho(): void {
+    this._pedidoService.addProdutoAoCarrinho(this.produto);
   }
 
 }
