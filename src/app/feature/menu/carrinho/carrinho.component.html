@@ -1,6 +1,6 @@
 <div id="fundo-carrinho" *ngIf="visibilidade" (click)="notify.emit()"></div>
 
-<div id="carrinho" class="cor-de-fundo font-padrao" *ngIf="visibilidade" >
+<div id="carrinho" class="cor-de-fundo font-padrao overflow-y-auto pb-4" *ngIf="visibilidade" >
     <button id="botao-fechar" class="cor-de-fundo" (click)="notify.emit()">></button>
 
     <h1 id="titulo" class="cor-de-fundo font-padrao">Carrinho</h1>
@@ -9,6 +9,9 @@
           [itemPedido]="item"
           (eventoDecremento)="decrementar(item.produto.id)"
           (eventoIncremento)="incrementar(item.produto.id)"
+          (eventoAdicionarAoCarrinho)="atualizarCarrinho()"
         ></app-itemdocarrinho>
     </div>
+
+    <p class="mt-2"> Total: {{total() | currency: 'BRL'}}</p>
 </div>
