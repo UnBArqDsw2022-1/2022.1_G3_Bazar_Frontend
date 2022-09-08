@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Produto } from 'src/app/models/Produto.model';
+import { DialogoService } from 'src/app/services/dialogo.service';
 import { PedidoService } from 'src/app/services/pedido.service';
 
 @Component({
@@ -16,6 +17,7 @@ export class ProdutoCardComponent implements OnInit {
 
   constructor(
     private _pedidoService: PedidoService,
+    private _dialogo: DialogoService,
   ) { }
 
   ngOnInit(): void {
@@ -34,6 +36,7 @@ export class ProdutoCardComponent implements OnInit {
 
   public adicionarAoCarrinho(): void {
     this._pedidoService.addProdutoAoCarrinho(this.produto);
+    this._dialogo.exibirDialogo('Sucesso!', `Produto ${this.produto.nome} adicionado ao carrinho.`);
   }
 
 }
