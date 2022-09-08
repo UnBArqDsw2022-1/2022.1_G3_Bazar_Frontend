@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { EMPTY, Observable } from 'rxjs';
+import { Paginacao } from 'src/app/models/paginacao.model';
+import { Produto } from 'src/app/models/produto.model';
+import { ProdutoService } from 'src/app/services/produto.service';
 
 @Component({
   selector: 'app-produto',
@@ -7,15 +11,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProdutoComponent implements OnInit {
 
-  produtos:any[] = [];
+  produtos$: Observable<Paginacao<Produto>> = EMPTY;
 
   constructor(
-
+    private _produtoService: ProdutoService,
   ) { }
 
   ngOnInit(): void {
+    this.produtos$ = this._produtoService.listarProdutos();
   }
-
-
 
 }

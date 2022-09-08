@@ -1,3 +1,10 @@
-<div class="content">
-
+<div
+  class="mt-4 content flex flex-row flex-wrap gap-4
+    justify-center items-start mb-4"
+  *ngIf="(produtos$ | async) as produtos"
+>
+  <app-produto-card
+    *ngFor="let produto of produtos.content"
+    [produto]="produto"
+  ></app-produto-card>
 </div>
