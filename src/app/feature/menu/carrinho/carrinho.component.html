@@ -14,4 +14,13 @@
     </div>
 
     <p class="mt-2"> Total: {{total() | currency: 'BRL'}}</p>
+
+    <button
+      type="button"
+      class="btn rounded-md mb-4"
+      routerLink="finalizar-pedido"
+      (click)="visibilidade = false"
+    >
+      Finalizar Compra
+    </button>
 </div>

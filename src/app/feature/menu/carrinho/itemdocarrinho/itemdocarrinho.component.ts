@@ -31,8 +31,7 @@ export class ItemdocarrinhoComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-      this.itemPedido = changes['itemPedido'].currentValue;
-      console.log(this.itemPedido)
+    this.itemPedido = changes['itemPedido'].currentValue;
   }
 
   public subTotal() : number{
