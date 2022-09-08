@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EMPTY, Observable } from 'rxjs';
 import { Paginacao } from 'src/app/models/paginacao.model';
-import { Produto } from 'src/app/models/produto.model';
+import { Produto } from 'src/app/models/Produto.model';
 import { ProdutoService } from 'src/app/services/produto.service';
 
 @Component({

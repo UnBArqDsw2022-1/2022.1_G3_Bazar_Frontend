@@ -1,7 +1,6 @@
-import { LayoutModule } from './feature/layout/layout.module';
 import { MatSelectModule } from '@angular/material/select';
 import { CrudProdutoComponent } from './feature/painel/crud-produto/crud-produto.component';
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -25,6 +24,9 @@ import { PainelComponent } from './feature/painel/painel.component';
 import { LoginComponent } from './feature/autentificacao/login/login.component';
 import { AuthService } from './services/auth.service';
 import { PainelModule } from './feature/painel/painel.module';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core'
+import { MenuModule } from './feature/menu/menu.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,7 @@ import { PainelModule } from './feature/painel/painel.module';
     CrudProdutoComponent,
   ],
   imports: [
+    RouterModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -47,7 +50,6 @@ import { PainelModule } from './feature/painel/painel.module';
     FormsModule,
     MatDialogModule,
     UsuariosModule,
-    LayoutModule,
     MatSnackBarModule,
     MatInputModule,
     MatFormFieldModule,
@@ -55,9 +57,14 @@ import { PainelModule } from './feature/painel/painel.module';
     MatTooltipModule,
     MatSelectModule,
     PainelModule,
+    MenuModule,
   ],
   providers: [
     AuthService,
+  ],
+  schemas : [
+    CUSTOM_ELEMENTS_SCHEMA,
+    NO_ERRORS_SCHEMA
   ],
   bootstrap: [AppComponent]
 })
