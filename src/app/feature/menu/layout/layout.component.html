@@ -30,6 +30,9 @@
         <li class="mx-3 nav-item">
           <a class="font-padrao nav-link" href="#">Kids</a>
         </li>
+        <li class="mx-3 nav-item">
+          <a class="font-padrao nav-link" routerLink="/cadastro-produto">Cadastrar Produto</a>
+        </li>
       </ul>
       <div class="iconsNav navbar navbar-default">
         <ul class="nav navbar-nav navbar-right">
@@ -39,7 +42,7 @@
             </a>
           </li>
           <li>
-            <a href="#" class="font-padrao">
+            <a routerLink="/login" class="font-padrao">
               <i
                 style="font-size: 20px"
                 class="azul-tema bi bi-person-circle me-3"
@@ -88,7 +91,7 @@
             <span>{{cat.nome}}</span>
           </a>
 
-          <div *ngIf="!routerLogin()">
+          <div *ngIf="isTokenExpirado(); else btnLogout">
             <a
               [routerLink]="['/login']"
               class="bg-gray-100 margin-button list-group-item list-group-item-action py-2 ripple"
@@ -98,6 +101,17 @@
               </button>
             </a>
           </div>
+
+          <ng-template #btnLogout>
+            <a
+              (click)="logout()"
+              class="bg-gray-100 margin-button list-group-item list-group-item-action py-2 ripple"
+            >
+              <button type="button" class="btn btn-primary btn-lg btn-lg btn-block">
+                Sair
+              </button>
+            </a>
+          </ng-template>
         </div>
       </div>
     </nav>

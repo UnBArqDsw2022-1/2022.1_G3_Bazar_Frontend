@@ -1,9 +1,12 @@
+import { BrowserModule } from '@angular/platform-browser';
 import { EMPTY, Observable } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { Categoria } from 'src/app/models/categoria.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { CategoriaService } from 'src/app/services/categoria.service';
+import { UsuarioLogado } from 'src/app/models/usuario-logado.model';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 @Component({
   selector: 'app-layout',
@@ -16,29 +19,40 @@ export class LayoutComponent implements OnInit {
 
   categorias$: Observable<Categoria[]> = EMPTY;
 
+  usuario: UsuarioLogado = {} as UsuarioLogado;
+
   constructor(
-    private readonly authService: AuthService,
-    private readonly router: Router,
     private categoriaService: CategoriaService,
+    private _storage: LocalStorageService,
     ) {
       this.visibilidadeDoCarrinho = false;
     }
 
   ngOnInit(): void {
     this.categorias$ = this.categoriaService.listarCategorias();
+    this.usuario = this._storage.getDadosDoUsuarioLogado();
   }
 
   alteraVisibilidadeDoCarrinho(){
     this.visibilidadeDoCarrinho  = ! this.visibilidadeDoCarrinho
   }
 
-  logout(){}
+  logout(){
+    this._storage.setDadosUsuarioLogado(null);
+    this.usuario = this._storage.getDadosDoUsuarioLogado();
+  }
 
-    routerLogin(){
-      if( this.router.url.match (/login/)){
-        console.log("teste");
-        return true;
-      }
-      return false;
+  isTokenExpirado() {
+    return AuthService.isTokenExpirado();
+  }
+
+  getPapeis(): string {
+    if (this.usuario && this.usuario.papeis) {
+      return this.usuario.papeis
+      .map(p => p.autoridade)
+      .join(', ')
+      .replace('ROLE_', '');
     }
+    return '';
+  }
 }
