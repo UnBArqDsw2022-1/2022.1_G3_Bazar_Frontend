@@ -4,6 +4,7 @@ import { Produto } from './../models/produto.model';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { environment } from 'src/environments/environment';
+import { Paginacao } from '../models/paginacao.model';
 
 
 @Injectable({
@@ -20,6 +21,10 @@ export class ProdutoService {
     })
   }
 
+  public listarProdutos(): Observable<Paginacao<Produto>> {
+    return this.http.get<Paginacao<Produto>>(`${environment.baseUrl}/produtos`);
+  }
+
   create(produto: Produto): Observable<Produto>{
     return this.http.post<Produto>(`${environment.baseUrl}/produtos`, produto, {
       headers: {
@@ -28,4 +33,5 @@ export class ProdutoService {
       },
     });
   }
+
 }
