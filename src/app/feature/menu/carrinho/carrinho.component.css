@@ -1,0 +1,35 @@
+#carrinho {
+    position: fixed;
+    height: 100%;
+    width: 20%;
+    z-index:10000000;
+    right : 0;
+    transition: 0.5s;
+    padding-top: 60px;
+
+    padding: 8px 8px 8px 32px;
+}
+#titulo{
+    display: flex;
+    justify-content: space-around;
+    border-bottom: #000000;
+    border-style: solid;
+}
+
+#botao-fechar{
+    position: fixed;
+    top: 4;
+    right: 20%;
+
+}
+
+#fundo-carrinho{
+    cursor:  pointer;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    z-index:10400;
+    background-color: rgb(0,0,0,.13);
+
+
+}

@@ -1,0 +1,9 @@
+<div>
+ <h3>{{itemPedido.produto.nome}}</h3>
+ <p>{{itemPedido.produto.preco}}</p>
+ <div>
+    <button (click)="incrementar()">+</button>
+    <p>{{itemPedido?.quantidade}}</p>
+    <button (click)="decrementar()">-</button>
+ </div>
+</div>

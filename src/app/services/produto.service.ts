@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Produto } from './../models/produto.model';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { environment } from 'src/environments/environment';
 import { Paginacao } from '../models/paginacao.model';
+import { Produto } from '../models/Produto.model';
 
 
 @Injectable({

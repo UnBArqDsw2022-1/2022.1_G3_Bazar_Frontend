@@ -1,11 +1,11 @@
 import { Observable, EMPTY } from 'rxjs';
 import { CategoriaService } from './../../../services/categoria.service';
-import { Produto } from '../../../models/produto.model';
 import { Component, OnInit } from '@angular/core';
 import { ProdutoService } from 'src/app/services/produto.service';
 import { ConversorService } from 'src/app/services/conversor.service';
 import { Imagem } from 'src/app/models/imagem.model';
 import { Categoria } from 'src/app/models/categoria.model';
+import { Produto } from 'src/app/models/Produto.model';
 
 @Component({
   selector: 'app-crud-produto',
@@ -15,6 +15,7 @@ import { Categoria } from 'src/app/models/categoria.model';
 export class CrudProdutoComponent implements OnInit {
 
   produto: Produto = {
+    id: 0,
     nome: 'Produto Teste',
     preco: 125.5,
     imagens: [],
@@ -47,7 +48,7 @@ export class CrudProdutoComponent implements OnInit {
     for (let file of event.target.files) {
       const str = this.conversorService.converterArquivoParaBase64(file);
       str.onload = () => {
-        this.produto.imagens.push({
+        this.produto.imagens?.push({
           imagemUrl: str.result as string,
         } as Imagem);
       }
@@ -55,7 +56,7 @@ export class CrudProdutoComponent implements OnInit {
   }
 
   public removerImagem(index: number): void {
-    this.produto.imagens.splice(index, 1);
+    this.produto.imagens?.splice(index, 1);
   }
 
   public obterCategoriasSelecionadas(categoriasIds: Array<{id: number}>): void {

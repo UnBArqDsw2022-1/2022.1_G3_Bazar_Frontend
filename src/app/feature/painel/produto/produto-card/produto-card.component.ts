@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Produto } from 'src/app/models/produto.model';
+import { Produto } from 'src/app/models/Produto.model';
 
 @Component({
   selector: 'app-produto-card',
@@ -16,7 +16,7 @@ export class ProdutoCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.imagemSelecionada = this.produto?.imagens[this.contadorImagem]?.imagemUrl || 'assets/imagens/prod-default.jpg';
+    this.imagemSelecionada = this.produto.imagens[this.contadorImagem]?.imagemUrl || 'assets/imagens/prod-default.jpg';
   }
 
   public proximaImagem(): void {
