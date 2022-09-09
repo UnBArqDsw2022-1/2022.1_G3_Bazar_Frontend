@@ -5,11 +5,12 @@ import { CarrinhoComponent } from './carrinho/carrinho.component';
 import { ItemdocarrinhoComponent } from './carrinho/itemdocarrinho/itemdocarrinho.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { RouterModule } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
 
 
 
 @NgModule({
-  declarations: 
+  declarations:
   [
     LayoutComponent,
     CarrinhoComponent,
@@ -20,7 +21,7 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     RouterModule,
     SharedModule,
-    
+    MatIconModule,
   ],
   exports: [
     LayoutComponent,

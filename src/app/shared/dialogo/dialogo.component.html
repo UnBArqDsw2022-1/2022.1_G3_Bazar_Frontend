@@ -1,24 +1,27 @@
-<div class="flex gap-4">
-  <div [ngSwitch]="data.tipo">
-    <mat-icon *ngSwitchCase="'error'">cancel</mat-icon>
-    <mat-icon *ngSwitchCase="'success'">done</mat-icon>
-  </div>
+<div class="flex justify-between gap-4">
+  <div class="flex gap-4">
+    <div [ngSwitch]="data.tipo">
+      <mat-icon *ngSwitchCase="'error'">cancel</mat-icon>
+      <mat-icon *ngSwitchCase="'success'">done</mat-icon>
+    </div>
 
-  <div>
-    <h1 class="font-bold mt-0" mat-dialog-title>
-      {{ data.titulo }}
-    </h1>
+    <div>
+      <h1 class="font-bold mt-0" mat-dialog-title>
+        {{ data.titulo }}
+      </h1>
 
-    <div mat-dialog-content>
-      <p>
-        {{ data.mensagem }}
-      </p>
+      <div mat-dialog-content>
+        <p>
+          {{ data.mensagem }}
+        </p>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="text-right" mat-dialog-actions>
-  <button *ngIf="data.exibirBtnCancelar" class="text-white" mat-button (click)="fechar()">
-    Fechar
-  </button>
+  <span
+    *ngIf="data.exibirBtnCancelar"
+    (click)="fechar()"
+  >
+    <mat-icon>clear</mat-icon>
+  </span>
 </div>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { DialogoService } from 'src/app/services/dialogo.service';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { AuthService } from '../../../services/auth.service';
 
 @Component({
@@ -16,6 +18,8 @@ export class LoginComponent implements OnInit {
     private _auth: AuthService,
     private _fb: FormBuilder,
     private _dialogo: DialogoService,
+    private _storage: LocalStorageService,
+    private _router: Router,
   ) {
     this.formLogin = this._fb.group({
       username: ['', [Validators.required, Validators.email]],
@@ -35,6 +39,9 @@ export class LoginComponent implements OnInit {
             this.formLogin.reset();
           }
         });
+
+        this._storage.setDadosUsuarioLogado(response);
+        this._router.navigateByUrl('/produtos');
       },
 
       error: (error) => {

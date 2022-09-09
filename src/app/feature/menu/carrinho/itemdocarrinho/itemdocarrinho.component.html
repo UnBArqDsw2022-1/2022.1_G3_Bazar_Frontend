@@ -1,12 +1,15 @@
 <div class="item">
- <h3>{{itemPedido.produto.nome}}</h3>
- <p>{{ "Preço por unidade R$ "+itemPedido.produto.preco}}</p>
- <div class="quantidade">
-    <p>{{"quantidade: " + itemPedido.quantidade}}</p>
-    <div class="btns">
-      <button (click)="eventoDecremento.emit()" type="button" class="btn"> - </button>
-      <button (click)="eventoIncremento.emit()" type="button" class="btn"> + </button>
-    </div>
- </div>
- <p> {{"subtotal R$ "+precototal()}}</p>
+  <h3>{{itemPedido.produto.nome}}</h3>
+
+  <p>Preço por unidade {{itemPedido.produto.preco | currency: 'BRL'}}</p>
+
+  <div class="flex items-center justify-between">
+    <button (click)="eventoDecremento.emit()" type="button" class="btn"> - </button>
+
+    <span>{{itemPedido.quantidade}}</span>
+
+    <button (click)="eventoIncremento.emit()" type="button" class="btn"> + </button>
+  </div>
+
+  <p class="mt-2"> Subtotal: {{subTotal() | currency: 'BRL'}}</p>
 </div>
