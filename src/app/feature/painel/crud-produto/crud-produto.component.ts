@@ -42,6 +42,8 @@ export class CrudProdutoComponent implements OnInit {
     this.produtoService.create(this.produto).subscribe(() => {
       this._dialogo.exibirDialogo('Sucesso', `Produto ${this.produto.nome} cadastrado com sucesso!`);
       this._router.navigateByUrl('/');
+    }, (error) => {
+      this._dialogo.exibirDialogo('Erro', `Faça login para poder cadastrar este e outros produtos.`);
     });
   }
 
