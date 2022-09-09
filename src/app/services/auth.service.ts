@@ -3,27 +3,23 @@ import { Injectable } from '@angular/core';
 import { stringify } from 'qs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-
-interface Token {
-  access_token: string;
-  expires_in: number;
-  nomeDeUsuario: string;
-  refresh_token: string;
-  scope: string;
-  token_type: string;
-  usuarioId: number;
-}
+import { UsuarioLogado } from '../models/usuario-logado.model';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(
-    private _http: HttpClient
-  ) { }
+  private _jwt: JwtHelperService;
 
-  public login(props : {username: string; password: string}): Observable<Token> {
+  constructor(
+    private _http: HttpClient,
+  ) {
+    this._jwt = new JwtHelperService();
+  }
+
+  public login(props : {username: string; password: string}): Observable<UsuarioLogado> {
     const app = `bazar-fga:bazar-fga`;
 
     const headers = {
@@ -39,9 +35,21 @@ export class AuthService {
 
     const payload = stringify(data);
 
-    return this._http.post<Token>(environment.baseUrl, payload, {
+    return this._http.post<UsuarioLogado>(`${environment.baseUrl}/oauth/token`, payload, {
       headers,
     });
+  }
+
+  public static getToken(): string {
+    const usuario = localStorage.getItem('usuario');
+    return usuario !== null ? JSON.parse(usuario).access_token : '';
+  }
+
+  public static isTokenExpirado(): boolean {
+    const token = AuthService.getToken();
+    const isExpirado = new JwtHelperService()
+      .isTokenExpired(token);
+    return isExpirado;
   }
 
 }
