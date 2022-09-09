@@ -2,6 +2,7 @@ import { PedidoService } from './../../../services/pedido.service';
 import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectorRef, OnChanges, SimpleChanges } from '@angular/core';
 import { ItemPedido } from 'src/app/models/ItemPedido.model';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
+import { ProdutoComponent } from '../../painel/produto/produto.component';
 
 @Component({
   selector: 'app-carrinho',

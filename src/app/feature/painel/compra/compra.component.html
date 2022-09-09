@@ -114,14 +114,14 @@
         </ng-template>
 
         <div class="flex gap-4 mb-4">
-          <mat-card class="w-full">
+          <mat-card class="w-full" *ngIf="enderecoSelecionado">
             <div>
                 <mat-card-title>{{enderecoSelecionado.bairro}}</mat-card-title>
-                <mat-card-subtitle>{{enderecoSelecionado.cep}} - {{enderecoSelecionado.cidade?.estado?.sigla}}</mat-card-subtitle>
+                <mat-card-subtitle>{{enderecoSelecionado.cep}} - {{enderecoSelecionado.cidade.estado.sigla}}</mat-card-subtitle>
             </div>
             <mat-card-content>
                 {{enderecoSelecionado.complemento ?? 'Sem complemento'}}. nº {{enderecoSelecionado.numero}} <br/>
-                {{enderecoSelecionado.cidade?.nome}}/{{enderecoSelecionado.cidade?.estado?.nome}}
+                {{enderecoSelecionado.cidade.nome}}/{{enderecoSelecionado.cidade.estado.nome}}
             </mat-card-content>
           </mat-card>
 
