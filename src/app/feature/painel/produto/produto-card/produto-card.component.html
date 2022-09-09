@@ -1,0 +1,61 @@
+<mat-card class="max-w-32">
+  <div
+    *ngIf="produto.imagens.length > 0; else produtoNaoTemImagem"
+    class="flex flex-row gap-2"
+  >
+    <button
+      (click)="imagemAnterior()"
+      [hidden]="contadorImagem <= 0"
+    >
+      <mat-icon>arrow_back_ios</mat-icon>
+    </button>
+    <img
+      mat-card-image
+      class="max-w-32"
+      style="max-width: 350px !important;"
+      [src]="imagemSelecionada"
+      [alt]="produto.nome"
+    >
+    <button
+      (click)="proximaImagem()"
+      [hidden]="contadorImagem >= (produto.imagens.length - 1)"
+    >
+      <mat-icon>arrow_forward_ios</mat-icon>
+    </button>
+  </div>
+
+  <ng-template #produtoNaoTemImagem>
+    <img
+      mat-card-image
+      class="max-w-32"
+      style="max-width: 350px !important;"
+      [src]="imagemSelecionada"
+      [alt]="'Produto não possui imagem'"
+    >
+  </ng-template>
+
+  <div>
+    <mat-card-title>
+      {{ produto.nome }}
+    </mat-card-title>
+
+    <mat-card-subtitle>
+      Disponível
+    </mat-card-subtitle>
+  </div>
+
+  <mat-card-content>
+    <p>
+      {{ produto.preco | currency: 'BRL' }}
+    </p>
+  </mat-card-content>
+  <mat-card-actions class="text-right">
+    <button
+      mat-flat-button
+      color="primary"
+      (click)="adicionarAoCarrinho()"
+    >
+      Compar
+    </button>
+  </mat-card-actions>
+</mat-card>

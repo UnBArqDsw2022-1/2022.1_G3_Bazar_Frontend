@@ -4,5 +4,5 @@ export interface Estado {
   id?: number;
   sigla: string;
   nome: string;
-  cidades: Cidade[];
+  cidades?: Cidade[];
 }

@@ -1,12 +1,13 @@
 import { LocalStorageService } from './local-storage.service';
 import { CarrinhoComponent } from './../feature/menu/carrinho/carrinho.component';
-import { Pedido } from './../models/Pedido.model';
+import { Pedido, PedidoFinal } from './../models/Pedido.model';
 import { ItemPedido } from './../models/ItemPedido.model';
-import { Produto } from './../models/Produto.model';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Produto } from '../models/Produto.model';
+import { AuthService } from './auth.service';
 
 
 @Injectable({
@@ -81,10 +82,22 @@ export class PedidoService {
       };
     }
 
+    if (carrinho[index].quantidade <= 0) {
+      carrinho.splice(index, 1);
+      return [];
+    }
+
     this._storage.setCarrinho(carrinho);
 
     return carrinho;
   }
 
+  public finalizarPedido(pedido: PedidoFinal): Observable<void> {
+    return this._http.post<void>(`${environment.baseUrl}/pedidos`, pedido, {
+      headers: {
+        'Authorization': 'Bearer ' + AuthService.getToken(),
+      }
+    });
+  }
 
 }

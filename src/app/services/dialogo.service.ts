@@ -17,7 +17,7 @@ export class DialogoService {
   public exibirDialogo(
     titulo: string,
     mensagem: string,
-    tempoExibicaoEmSeg: number | null,
+    tempoExibicaoEmSeg: number = 5000,
     tipo: 'error' | 'success' = 'success',
     exibirBtnCancelar: boolean = true,
   ): Observable<any> {
@@ -52,7 +52,7 @@ export class DialogoService {
 
       this.intervaloId = setTimeout(() => {
         dialogoRef.close();
-      }, 5000);
+      }, tempoExibicaoEmSeg);
     }
   }
 

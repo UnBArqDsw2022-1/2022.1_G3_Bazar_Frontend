@@ -1,97 +1,123 @@
-
-
-
-
 <!--Main Navigation-->
-
-  <app-carrinho [visibilidade]="visibilidadeDoCarrinho" (notify)="alteraVisibilidadeDoCarrinho()"></app-carrinho>
-
-
-  <!-- Sidebar -->
-  <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-gray-100">
-    <div>
-      <img src="assets/icons/logo.svg">
+<!-- Sidebar -->
+<div class="flex flex-col h-screen">
+  <nav
+    id="main-navbar"
+    class="bg-gray-100 border border-gray rounded-left navbar navbar-expand-lg
+      flex"
+  >
+    <div class="margin">
+      <div class="input-group">
+        <input
+          class="bg-gray-50 form-control rounded ml-2"
+          placeholder="Search"
+          aria-label="Search"
+        />
+        <button type="button" class="input-group-text border-0">
+          <i class="bi bi-search"></i>
+        </button>
+        <!-- </form> -->
+      </div>
     </div>
+    <div class="collapse navbar-collapse flex justify-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="mx-3 nav-item">
+          <a class="font-padrao nav-link" href="#">Masculino</a>
+        </li>
+        <li class="mx-3 nav-item">
+          <a class="font-padrao nav-link" href="#">Feminino</a>
+        </li>
+        <li class="mx-3 nav-item">
+          <a class="font-padrao nav-link" href="#">Kids</a>
+        </li>
+        <li class="mx-3 nav-item">
+          <a class="font-padrao nav-link" routerLink="/cadastro-produto">Cadastrar Produto</a>
+        </li>
+      </ul>
+      <div class="iconsNav navbar navbar-default">
+        <ul class="nav navbar-nav navbar-right">
+          <li (click) = "alteraVisibilidadeDoCarrinho()">
+            <a class="azul-tema">
+              <i style="font-size: 20px" class="bi bi-cart3 me-3"></i>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/login" class="font-padrao">
+              <i
+                style="font-size: 20px"
+                class="azul-tema bi bi-person-circle me-3"
+              ></i
+              ><span>Usuário</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="azul-tema px-3">
+              <i style="font-size: 20px" class="bi bi-gear me-3"></i>
+            </a>
+          </li>
+        </ul>
 
-    <div class="position-sticky">
-      <div style="font-size: large" class="font-padrao list-group list-group-flush mx-3 mt-4">
-        <a [routerLink]="['/login']" class="bg-gray-100 list-group-item list-group-item-action py-2 ripple" aria-current="true">
-          <i class="colorIcon bi bi-grid me-3"></i><span >Ver Todos</span>
-        </a>
-
-        <a [routerLink]="['/']" class="bg-gray-100  mt-3 list-group-item list-group-item-action py-2 ripple">
-          <i class="colorIcon bi bi-bag-heart-fill me-3"></i><span>Roupas</span>
-        </a>
-
-        <a [routerLink]="['/']" class="bg-gray-100 mt-3 list-group-item list-group-item-action py-2 ripple"><i
-            class="colorIcon bi bi-sunglasses me-3"></i><span>Acessórios</span></a>
-
-        <a [routerLink]="['/']" class="bg-gray-100 mt-3 d-flex list-group-item list-group-item-action py-2 ripple">
-          <i> <img src="assets/icons/dog-bone-pngrepo-com.png" width="15px"></i>
-          <span class="px-3">Pets</span></a>
-
-        <a [routerLink]="['/']" class="bg-gray-100  mt-3 list-group-item list-group-item-action py-2 ripple">
-          <i class="colorIcon bi bi-house-door-fill me-3"></i><span>Casa</span>
-        </a>
-
-       
-
-        <div *ngIf="!routerLogin()">
-          <a [routerLink]="['/login']" class="bg-gray-100 margin-button list-group-item list-group-item-action py-2 ripple">
-            <button type="button" class="btn btn-primary btn-lg btn-lg btn-block">Entrar</button>
-          </a>
-        </div>
+        <app-carrinho [visibilidade]="visibilidadeDoCarrinho" (notify)="alteraVisibilidadeDoCarrinho()"></app-carrinho>
       </div>
     </div>
   </nav>
 
+  <main class="flex h-full">
+    <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-gray-100">
+      <div>
+        <img src="assets/icons/logo.svg" />
+      </div>
 
-<nav id="main-navbar" class=" bg-gray-100 border border-gray rounded-left navbar navbar-expand-lg fixed-top">
+      <div class="position-sticky">
+        <div
+          style="font-size: large"
+          class="font-padrao list-group list-group-flush mx-3 mt-4"
+        >
+          <a
+            [routerLink]="['/']"
+            class="bg-gray-100 list-group-item list-group-item-action py-2 ripple"
+            aria-current="true"
+          >
+            <i class="colorIcon bi bi-grid me-3"></i><span>Ver Todos</span>
+          </a>
 
-  <div class="margin">
-    <div class="input-group">
-      <input
-        class="bg-gray-50 form-control rounded"
-        placeholder="Search"
-        aria-label="Search"
-      />
-      <button type ="button" class="input-group-text border-0">
-        <i class="bi bi-search"></i>
-      </button>
-    <!-- </form> -->
+          <a
+            *ngFor="let cat of (categorias$ | async)"
+            [routerLink]="['/produtos', {idCategoria: cat.id}]"
+            class="bg-gray-100 mt-3 list-group-item list-group-item-action
+              py-2 ripple flex items-center gap-2 cursor-pointer"
+          >
+            <mat-icon class="colorIcon">{{cat?.icone}}</mat-icon>
+            <span>{{cat.nome}}</span>
+          </a>
+
+          <div *ngIf="isTokenExpirado(); else btnLogout">
+            <a
+              [routerLink]="['/login']"
+              class="bg-gray-100 margin-button list-group-item list-group-item-action py-2 ripple"
+            >
+              <button type="button" class="btn btn-primary btn-lg btn-lg btn-block">
+                Entrar
+              </button>
+            </a>
+          </div>
+
+          <ng-template #btnLogout>
+            <a
+              (click)="logout()"
+              class="bg-gray-100 margin-button list-group-item list-group-item-action py-2 ripple"
+            >
+              <button type="button" class="btn btn-primary btn-lg btn-lg btn-block">
+                Sair
+              </button>
+            </a>
+          </ng-template>
+        </div>
+      </div>
+    </nav>
+
+    <div class="w-full bg-white">
+      <router-outlet></router-outlet>
     </div>
-  </div>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="mx-3 nav-item">
-        <a class="font-padrao nav-link" href="#">Masculino</a>
-      </li>
-      <li class="mx-3 nav-item">
-        <a class="font-padrao nav-link" href="#">Feminino</a>
-      </li>
-      <li class="mx-3 nav-item">
-        <a class="font-padrao nav-link" href="#">Kids</a>
-      </li>
-    </ul>
-  <div class="iconsNav navbar navbar-default">
-      <ul class="nav navbar-nav navbar-right">
-        <li (click) = "alteraVisibilidadeDoCarrinho()">
-          <a class="azul-tema">
-            <i style="font-size: 20px" class="bi bi-cart3 me-3"></i>
-          </a>
-        </li>
-        <li>
-          <a href="#" class="font-padrao">
-            <i style="font-size: 20px" class="azul-tema bi bi-person-circle me-3"></i><span>Usuário</span>
-          </a>
-        </li>
-        <li>
-          <a href="#" class="azul-tema px-3">
-            <i style="font-size: 20px" class="bi bi-gear me-3"></i>
-          </a>
-        </li>
-      </ul>
-    </div>
-
-  </div>
-</nav>
+  </main>
+</div>
