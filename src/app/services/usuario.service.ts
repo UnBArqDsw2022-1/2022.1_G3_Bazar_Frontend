@@ -17,4 +17,8 @@ export class UsuarioService {
     return this._http.post(`${environment.baseUrl}/usuarios`, usuario);
   }
 
+  public consultZipCode(zipCode: string):  Observable<any> {
+    return this._http.get(`https://viacep.com.br/ws/${zipCode}/json/`);
+  }
+
 }
