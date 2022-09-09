@@ -47,7 +47,6 @@ export class AuthService {
 
   public static isTokenExpirado(): boolean {
     const token = AuthService.getToken();
-    console.log(token)
     const isExpirado = new JwtHelperService()
       .isTokenExpired(token);
     return isExpirado;

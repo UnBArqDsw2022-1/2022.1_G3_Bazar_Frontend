@@ -6,6 +6,8 @@ import { ConversorService } from 'src/app/services/conversor.service';
 import { Imagem } from 'src/app/models/imagem.model';
 import { Categoria } from 'src/app/models/categoria.model';
 import { Produto } from 'src/app/models/Produto.model';
+import { Router } from '@angular/router';
+import { DialogoService } from 'src/app/services/dialogo.service';
 
 @Component({
   selector: 'app-crud-produto',
@@ -16,8 +18,8 @@ export class CrudProdutoComponent implements OnInit {
 
   produto: Produto = {
     id: 0,
-    nome: 'Produto Teste',
-    preco: 125.5,
+    nome: '',
+    preco: 0,
     imagens: [],
     categorias: [],
   };
@@ -28,6 +30,8 @@ export class CrudProdutoComponent implements OnInit {
     private produtoService: ProdutoService,
     private categoriaService: CategoriaService,
     private conversorService: ConversorService,
+    private _router: Router,
+    private _dialogo: DialogoService,
   ) { }
 
   ngOnInit(): void {
@@ -36,7 +40,8 @@ export class CrudProdutoComponent implements OnInit {
 
   public cadastrarProduto(): void {
     this.produtoService.create(this.produto).subscribe(() => {
-      this.produtoService.showMessage('Operaçao executada com sucesso!')
+      this._dialogo.exibirDialogo('Sucesso', `Produto ${this.produto.nome} cadastrado com sucesso!`);
+      this._router.navigateByUrl('/');
     });
   }
 

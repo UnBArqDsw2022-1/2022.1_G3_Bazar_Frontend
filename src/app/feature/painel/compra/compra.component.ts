@@ -21,7 +21,7 @@ export class CompraComponent implements OnInit {
   enderecos$: Observable<EnderecoUser[]> = EMPTY;
   pedidos: ItemPedido[] = [];
   isEditable = true;
-  enderecoSelecionado: EnderecoUser = {} as EnderecoUser;
+  enderecoSelecionado: EnderecoUser | null = null;
   pagamentoSelecionado: any = {};
 
   enderecoFormGroup = this._formBuilder.group({
@@ -63,7 +63,7 @@ export class CompraComponent implements OnInit {
   public finalizarPedido(): void {
     const pedido: PedidoFinal = {
       enderecoEntrega: {
-        id: this.enderecoSelecionado.id,
+        id: this.enderecoSelecionado?.id ?? 0,
       },
       pagamento: this.pagamentoSelecionado,
       itens: this._storage.getCarrinho(),
