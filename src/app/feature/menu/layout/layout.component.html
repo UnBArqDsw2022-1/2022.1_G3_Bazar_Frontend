@@ -22,13 +22,13 @@
     <div class="collapse navbar-collapse flex justify-end" id="navbarNav">
       <ul class="navbar-nav">
         <li class="mx-3 nav-item">
-          <a class="font-padrao nav-link" href="#">Masculino</a>
+          <a class="font-padrao nav-link" [routerLink]="['/produtos', {idCategoria: 5}]">Masculino</a>
         </li>
         <li class="mx-3 nav-item">
-          <a class="font-padrao nav-link" href="#">Feminino</a>
+          <a class="font-padrao nav-link" [routerLink]="['/produtos', {idCategoria: 6}]">Feminino</a>
         </li>
         <li class="mx-3 nav-item">
-          <a class="font-padrao nav-link" href="#">Kids</a>
+          <a class="font-padrao nav-link" [routerLink]="['/produtos', {idCategoria: 7}]">Kids</a>
         </li>
         <li class="mx-3 nav-item">
           <a class="font-padrao nav-link" routerLink="/cadastro-produto">Cadastrar Produto</a>

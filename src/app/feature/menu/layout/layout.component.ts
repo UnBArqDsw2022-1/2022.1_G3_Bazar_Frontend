@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { EMPTY, Observable } from 'rxjs';
+import { EMPTY, map, Observable } from 'rxjs';
 import { Component, OnInit, OnChanges, SimpleChanges, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { Categoria } from 'src/app/models/categoria.model';
@@ -29,7 +29,9 @@ export class LayoutComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    this.categorias$ = this.categoriaService.listarCategorias();
+    this.categorias$ = this.categoriaService
+      .listarCategorias()
+      .pipe(map(categorias => categorias.filter(cat => (cat.nome !== 'Masculino' && cat.nome !== 'Feminino' && cat.nome !== 'Kids'))));
     this.usuario = this._storage.getDadosDoUsuarioLogado();
   }
 
