@@ -1,3 +1,54 @@
 .mat-primary{
   background-color: #193264;
 }
+
+.box {
+  margin: auto;
+  overflow: hidden;
+  border-radius: 20px;
+  width: 60px;
+  height: 60px;
+  background: #f0f0f0;
+ 
+  animation: anime 20s cubic-bezier(0.16, 1, 0.3, 1)  both;
+  /* animation-fill-mode: forwards; */
+}
+
+@keyframes anime {
+  0% {
+      overflow: hidden;
+    width: 60px;
+    height: auto;
+    background: #f0f0f0;
+  
+  }
+  /* 25% {
+      overflow: hidden;
+    width: 60px;
+    height: 60px;
+    background: #f8f8f8;
+    box-shadow:  10px 10px 10px #cccccc,
+                 10px 10px 10px #ffffff,
+                 0 0 0 #cccccc inset,
+                 0 0 0 #ffffff inset;
+  }
+  50% {
+      overflow: hidden;
+    width: 60px;
+    height: 240px;
+    background: #f8f8f8;
+    box-shadow:  10px 10px 10px #cccccc,
+                 10px 10px 10px #ffffff,
+                 0 0 0 #cccccc inset,
+                 0 0 0 #ffffff inset;
+  } */
+  100% {
+      overflow: hidden;
+    width: 1088px;
+    height: auto;
+    background: #fafafa;
+  
+  }
+
+
+}

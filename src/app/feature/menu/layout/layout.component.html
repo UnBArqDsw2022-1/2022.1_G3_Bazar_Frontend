@@ -1,53 +1,49 @@
 <!--Main Navigation-->
 <!-- Sidebar -->
 <div class="flex flex-col h-screen">
-  <nav
-    id="main-navbar"
-    class="bg-gray-100 border border-gray rounded-left navbar navbar-expand-lg
-      flex"
-  >
+  <nav id="main-navbar" class="bg-gray-100 border border-gray rounded-left navbar navbar-expand-lg
+      flex">
     <div class="margin">
       <div class="input-group">
-        <input
-          class="bg-gray-50 form-control rounded ml-2"
-          placeholder="Search"
-          aria-label="Search"
-        />
+        <input class="bg-gray-50 form-control rounded ml-2" placeholder="Search" aria-label="Search" />
         <button type="button" class="input-group-text border-0">
           <i class="bi bi-search"></i>
         </button>
         <!-- </form> -->
       </div>
     </div>
+
     <div class="collapse navbar-collapse flex justify-end" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="mx-3 nav-item">
-          <a class="font-padrao nav-link" [routerLink]="['/produtos', {idCategoria: 5}]">Masculino</a>
-        </li>
-        <li class="mx-3 nav-item">
-          <a class="font-padrao nav-link" [routerLink]="['/produtos', {idCategoria: 6}]">Feminino</a>
-        </li>
-        <li class="mx-3 nav-item">
-          <a class="font-padrao nav-link" [routerLink]="['/produtos', {idCategoria: 7}]">Kids</a>
-        </li>
-        <li class="mx-3 nav-item">
-          <a class="font-padrao nav-link" routerLink="/cadastro-produto">Cadastrar Produto</a>
-        </li>
-      </ul>
+      <div class="radio">
+        <ul class="navbar-nav">
+          <li class="mx-3 nav-item">
+            <input label="Masculino" type="radio" id="male" name="gender" value="male" checked [routerLink]="['/produtos', {idCategoria: 5}]">
+            <!-- <a class="font-padrao nav-link" [routerLink]="['/produtos', {idCategoria: 5}]"></a> -->
+          </li>
+          <li class="mx-3 nav-item">
+            <input label="Feminino" type="radio" id="female" name="gender" value="female" [routerLink]="['/produtos', {idCategoria: 6}]">
+            <!-- <a class="font-padrao nav-link" [routerLink]="['/produtos', {idCategoria: 6}]"></a> -->
+          </li>
+          <li class="mx-3 nav-item">
+            <input label="Kids" type="radio" id="kids" name="gender" value="kids" [routerLink]="['/produtos', {idCategoria: 7}]">
+            <!-- <a class="font-padrao nav-link" [routerLink]="['/produtos', {idCategoria: 7}]"></a> -->
+          </li>
+          <li class="mx-3 nav-item">
+            <input label="Cadastrar Produto" type="radio" id="other" name="gender" value="other" routerLink="/cadastro-produto">
+            <!-- <a class="font-padrao nav-link" routerLink="/cadastro-produto"></a> -->
+          </li>
+        </ul>
+      </div>
       <div class="iconsNav navbar navbar-default">
         <ul class="nav navbar-nav navbar-right">
-          <li (click) = "alteraVisibilidadeDoCarrinho()">
+          <li (click)="alteraVisibilidadeDoCarrinho()">
             <a class="azul-tema">
-              <i style="font-size: 20px" class="bi bi-cart3 me-3"></i>
+              <i style="font-size: 20px; cursor: pointer;" class="bi bi-cart3 me-3"></i>
             </a>
           </li>
           <li>
             <a routerLink="/login" class="font-padrao">
-              <i
-                style="font-size: 20px"
-                class="azul-tema bi bi-person-circle me-3"
-              ></i
-              ><span>Usuário</span>
+              <i style="font-size: 20px" class="azul-tema bi bi-person-circle me-3"></i><span>Usuário</span>
             </a>
           </li>
           <li>
@@ -69,33 +65,21 @@
       </div>
 
       <div class="position-sticky">
-        <div
-          style="font-size: large"
-          class="font-padrao list-group list-group-flush mx-3 mt-4"
-        >
-          <a
-            [routerLink]="['/']"
-            class="bg-gray-100 list-group-item list-group-item-action py-2 ripple"
-            aria-current="true"
-          >
+        <div style="font-size: large" class="font-padrao list-group list-group-flush mx-3 mt-4">
+          <a [routerLink]="['/']" class="bg-gray-100 list-group-item list-group-item-action py-2 ripple"
+            aria-current="true">
             <i class="colorIcon bi bi-grid me-3"></i><span>Ver Todos</span>
           </a>
 
-          <a
-            *ngFor="let cat of (categorias$ | async)"
-            [routerLink]="['/produtos', {idCategoria: cat.id}]"
-            class="bg-gray-100 mt-3 list-group-item list-group-item-action
-              py-2 ripple flex items-center gap-2 cursor-pointer"
-          >
+          <a *ngFor="let cat of (categorias$ | async)" [routerLink]="['/produtos', {idCategoria: cat.id}]" class="bg-gray-100 mt-3 list-group-item list-group-item-action
+              py-2 ripple flex items-center gap-2 cursor-pointer">
             <mat-icon class="colorIcon">{{cat?.icone}}</mat-icon>
             <span>{{cat.nome}}</span>
           </a>
 
           <div *ngIf="isTokenExpirado(); else btnLogout">
-            <a
-              [routerLink]="['/login']"
-              class="bg-gray-100 margin-button list-group-item list-group-item-action py-2 ripple"
-            >
+            <a [routerLink]="['/login']"
+              class="bg-gray-100 margin-button list-group-item list-group-item-action py-2 ripple">
               <button type="button" class="btn btn-primary btn-lg btn-lg btn-block">
                 Entrar
               </button>
@@ -103,10 +87,7 @@
           </div>
 
           <ng-template #btnLogout>
-            <a
-              (click)="logout()"
-              class="bg-gray-100 margin-button list-group-item list-group-item-action py-2 ripple"
-            >
+            <a (click)="logout()" class="bg-gray-100 margin-button list-group-item list-group-item-action py-2 ripple">
               <button type="button" class="btn btn-primary btn-lg btn-lg btn-block">
                 Sair
               </button>

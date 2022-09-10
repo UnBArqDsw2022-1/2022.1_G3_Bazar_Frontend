@@ -1,6 +1,7 @@
+
 <div class="flex justify-center items-center h-full">
-  <div class="w-full max-w-md m-4 sm:w-3/5 sm:m-0">
-    <mat-card class="flex-1">
+  <div class="w-full max-w-md m-4 sm:w-3/5 sm:m-0 box">
+    <mat-card class="flex-1 ">
       <h1 class="text-center">Login</h1>
 
       <form [formGroup]="formLogin">
@@ -9,7 +10,7 @@
           [formName]="'username'"
           [titulo]="'Informe o seu E-mail'"
           [dica]="'Digite o seu email'"
-          [placeholder]="'examplo@fga.com'"
+          [placeholder]="'exemplo@fga.com'"
         ></app-input-texto>
 
         <app-input-texto
